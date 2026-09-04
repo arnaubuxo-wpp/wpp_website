@@ -3,6 +3,7 @@ import { OVERRIDE_PAGES, getPageDef } from "@/lib/wpp/override-fields";
 import { getOverrides } from "@/lib/wpp/overrides-server";
 import { WPP_T, WPP_FONTS } from "@/lib/wpp/tokens";
 import PaginasForm from "./PaginasForm";
+import PagePreview from "./PagePreview";
 
 export const dynamic = "force-dynamic";
 
@@ -36,13 +37,14 @@ export default async function PaginasPage({
         </Link>
       </header>
 
-      <main style={{ padding: 32, maxWidth: 720 }}>
+      <main style={{ padding: 32, maxWidth: 1400 }}>
         <h1 style={{ fontSize: 22, fontWeight: 600, color: WPP_T.ink, margin: "0 0 4px" }}>
           Contenido de las páginas
         </h1>
         <p style={{ fontSize: 14, color: WPP_T.mute, margin: "0 0 20px" }}>
           Edita textos e imágenes de la web página por página. Los cambios se
-          publican al instante.
+          publican al instante. A la derecha tienes la página real para
+          ubicar cada campo.
         </p>
 
         <nav style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 24 }}>
@@ -68,7 +70,19 @@ export default async function PaginasPage({
           })}
         </nav>
 
-        <PaginasForm pageDef={pageDef} initialValues={overrides} />
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))",
+            gap: 24,
+            alignItems: "start",
+          }}
+        >
+          <PaginasForm pageDef={pageDef} initialValues={overrides} />
+          <div style={{ height: "calc(100vh - 220px)", minHeight: 480, position: "sticky", top: 32 }}>
+            <PagePreview path={pageDef.path} label={pageDef.label} />
+          </div>
+        </div>
       </main>
     </div>
   );
