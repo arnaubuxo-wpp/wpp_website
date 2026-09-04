@@ -110,17 +110,28 @@ export default function Blog({
         </div>
         <h1
           style={{
-            fontFamily: WPP_FONTS.serif,
-            fontStyle: "italic",
-            fontWeight: 400,
+            fontFamily: WPP_FONTS.sans,
+            fontWeight: 500,
             fontSize: "clamp(32px, 5vw, 52px)",
             lineHeight: 1.15,
+            letterSpacing: -1,
             margin: "0 0 16px",
             maxWidth: 720,
             color: WPP_T.ink,
           }}
         >
-          Perspectives on European technology M&amp;A and capital raising.
+          Perspectives on European technology M&amp;A and{" "}
+          <span
+            style={{
+              fontFamily: WPP_FONTS.serif,
+              fontStyle: "italic",
+              fontWeight: 400,
+              color: "#92a1d3",
+            }}
+          >
+            capital raising
+          </span>
+          <span style={{ color: "#92a1d3" }}>.</span>
         </h1>
         <p style={{ fontSize: 16, lineHeight: 1.6, color: WPP_T.mute, maxWidth: 560, margin: 0 }}>
           Notes from our partners on deal-making, fundraising and the technology sectors we work in.
@@ -141,7 +152,7 @@ export default function Blog({
                 color: !activeCategory ? "#fff" : WPP_T.ink,
               }}
             >
-              Todos
+              All
             </Link>
             {categories.map((c) => {
               const active = activeCategory === c.slug;
@@ -180,7 +191,7 @@ export default function Blog({
               fontSize: 15,
             }}
           >
-            No hay artículos publicados todavía. Vuelve pronto.
+            New articles coming soon — check back shortly.
           </div>
         ) : (
           <div

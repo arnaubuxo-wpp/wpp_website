@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Blog — White Peak Partners",
   description:
-    "Perspectivas de nuestros socios sobre M&A tecnológico europeo, captación de capital y los sectores en los que trabajamos.",
+    "Perspectives from our partners on European technology M&A, capital raising, and the sectors we work in.",
   alternates: { canonical: "/blog" },
 };
 
