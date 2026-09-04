@@ -100,11 +100,11 @@ export default function Blog({
           style={{
             fontFamily: WPP_FONTS.sans,
             fontWeight: 500,
-            fontSize: "clamp(32px, 5vw, 52px)",
-            lineHeight: 1.15,
-            letterSpacing: -1,
+            fontSize: "clamp(40px, 7.2vw, 92px)",
+            lineHeight: 0.98,
+            letterSpacing: -2.2,
             margin: "0 0 16px",
-            maxWidth: 720,
+            maxWidth: 900,
             color: WPP_T.ink,
           }}
         >
