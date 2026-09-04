@@ -108,7 +108,18 @@ export default function Blog({
             color: WPP_T.ink,
           }}
         >
-          Perspectives on European technology M&amp;A and{" "}
+          Perspectives on European technology{" "}
+          <span
+            style={{
+              fontFamily: WPP_FONTS.serif,
+              fontStyle: "italic",
+              fontWeight: 400,
+              color: "#92a1d3",
+            }}
+          >
+            M&amp;A
+          </span>{" "}
+          and{" "}
           <span
             style={{
               fontFamily: WPP_FONTS.serif,
