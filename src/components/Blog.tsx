@@ -96,18 +96,6 @@ export default function Blog({
   return (
     <div>
       <section style={{ padding: `${isMobile ? 56 : 96}px ${G} ${isMobile ? 40 : 56}px` }}>
-        <div
-          style={{
-            fontFamily: WPP_FONTS.mono,
-            fontSize: 12,
-            letterSpacing: 1.4,
-            textTransform: "uppercase",
-            color: WPP_T.blue,
-            marginBottom: 16,
-          }}
-        >
-          Insights
-        </div>
         <h1
           style={{
             fontFamily: WPP_FONTS.sans,
