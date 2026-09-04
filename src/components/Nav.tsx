@@ -169,7 +169,7 @@ export default function Nav({
       document.body.style.overflow = '';
     };
   }, [menuOpen]);
-  const items = [['home', 'Home'], ['what', 'What we do'], ['about', 'About us'], ['contact', 'Contact']];
+  const items = [['home', 'Home'], ['what', 'What we do'], ['about', 'About us'], ['blog', 'Blog'], ['contact', 'Contact']];
   const go = k => e => {
     e.preventDefault();
     setMenuOpen(false);

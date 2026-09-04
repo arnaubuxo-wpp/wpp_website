@@ -10,7 +10,7 @@ import Nav from "./Nav";
 import Footer from "./Footer";
 import { WPP_LINK, WPP_META } from "@/lib/wpp/tokens";
 
-type WppPage = "home" | "what" | "about" | "contact" | "privacy" | "terms";
+type WppPage = "home" | "what" | "about" | "contact" | "privacy" | "terms" | "blog";
 
 export default function SiteChrome({
   page,
@@ -28,7 +28,11 @@ export default function SiteChrome({
   // description> only cover Home (the App Router default-metadata route), so client
   // routes update them the same way the original SPA did on ?page= navigation.
   useEffect(() => {
-    const m = WPP_META[page] || WPP_META.home;
+    // Blog pages manage their own <title>/<meta description> via Next.js's
+    // generateMetadata (server-rendered, and correctly unique per post) — skip
+    // the legacy client-side override so it doesn't stomp on that.
+    const m = WPP_META[page];
+    if (!m) return;
     document.title = m.title;
     const d = document.querySelector('meta[name="description"]');
     if (d) d.setAttribute("content", m.desc);

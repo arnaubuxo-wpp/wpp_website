@@ -30,6 +30,9 @@ export default async function AdminDashboardPage() {
           <Link href="/admin/paginas" style={{ fontSize: 13, color: WPP_T.ink }}>
             Páginas
           </Link>
+          <Link href="/admin/blog" style={{ fontSize: 13, color: WPP_T.ink }}>
+            Blog
+          </Link>
           <Link href="/admin/account" style={{ fontSize: 13, color: WPP_T.ink }}>
             Account
           </Link>
@@ -60,6 +63,25 @@ export default async function AdminDashboardPage() {
           <strong>Editar contenido de las páginas →</strong>
           <div style={{ color: WPP_T.mute, marginTop: 4 }}>
             Cambia textos e imágenes de la web, página por página.
+          </div>
+        </Link>
+        <Link
+          href="/admin/blog"
+          style={{
+            display: "block",
+            background: "#fff",
+            border: `1px solid ${WPP_T.hair}`,
+            borderRadius: 10,
+            padding: 20,
+            fontSize: 14,
+            color: WPP_T.ink,
+            textDecoration: "none",
+            marginTop: 16,
+          }}
+        >
+          <strong>Gestionar el blog →</strong>
+          <div style={{ color: WPP_T.mute, marginTop: 4 }}>
+            Crea, edita, programa y publica artículos.
           </div>
         </Link>
       </main>

@@ -125,7 +125,7 @@ export default function Footer({
       fontFamily: F.sans,
       fontSize: 14
     }
-  }, [['home', 'Home'], ['about', 'About us'], ['what', 'What we do'], ['contact', 'Contact']].map(([k, l]) => /*#__PURE__*/React.createElement("a", {
+  }, [['home', 'Home'], ['about', 'About us'], ['what', 'What we do'], ['blog', 'Blog'], ['contact', 'Contact']].map(([k, l]) => /*#__PURE__*/React.createElement("a", {
     key: k,
     href: WPP_LINK(k),
     onClick: e => {
