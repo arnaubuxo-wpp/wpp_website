@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { PageDef } from "@/lib/wpp/override-fields";
 import { WPP_T, WPP_FONTS } from "@/lib/wpp/tokens";
@@ -17,10 +17,32 @@ export default function PaginasForm({
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
+  const [uploadingKey, setUploadingKey] = useState<string | null>(null);
+  const fileInputRefs = useRef<Record<string, HTMLInputElement | null>>({});
 
   function update(key: string, val: string) {
     setValues((prev) => ({ ...prev, [key]: val }));
     setSuccess(false);
+  }
+
+  async function handleFileSelected(key: string, file: File) {
+    setUploadingKey(key);
+    setError(null);
+    try {
+      const body = new FormData();
+      body.append("file", file);
+      const res = await fetch("/api/admin/upload", { method: "POST", body });
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.error || "Upload failed.");
+        return;
+      }
+      update(key, data.url);
+    } catch {
+      setError("Upload failed. Please try again.");
+    } finally {
+      setUploadingKey(null);
+    }
   }
 
   async function handleSave(e: React.FormEvent) {
@@ -112,6 +134,66 @@ export default function PaginasForm({
               onChange={(e) => update(field.key, e.target.value)}
               style={{ ...inputStyle, resize: "vertical", fontFamily: "inherit" }}
             />
+          ) : field.type === "image" ? (
+            <div>
+              {values[field.key] && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={values[field.key]}
+                  alt=""
+                  style={{
+                    display: "block",
+                    maxWidth: "100%",
+                    maxHeight: 160,
+                    borderRadius: 8,
+                    border: `1px solid ${WPP_T.hair}`,
+                    marginBottom: 8,
+                    objectFit: "cover",
+                  }}
+                />
+              )}
+              <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                <input
+                  type="text"
+                  value={values[field.key] ?? ""}
+                  placeholder={field.fallback}
+                  onChange={(e) => update(field.key, e.target.value)}
+                  style={{ ...inputStyle, flex: 1 }}
+                />
+                <button
+                  type="button"
+                  onClick={() => fileInputRefs.current[field.key]?.click()}
+                  disabled={uploadingKey === field.key}
+                  style={{
+                    flexShrink: 0,
+                    border: `1px solid ${WPP_T.hair}`,
+                    background: "#fff",
+                    borderRadius: 8,
+                    padding: "10px 14px",
+                    fontSize: 13,
+                    fontWeight: 600,
+                    color: WPP_T.ink,
+                    cursor: uploadingKey === field.key ? "default" : "pointer",
+                    fontFamily: WPP_FONTS.sans,
+                  }}
+                >
+                  {uploadingKey === field.key ? "Subiendo…" : "Subir imagen"}
+                </button>
+              </div>
+              <input
+                ref={(el) => {
+                  fileInputRefs.current[field.key] = el;
+                }}
+                type="file"
+                accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml"
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) handleFileSelected(field.key, file);
+                  e.target.value = "";
+                }}
+                style={{ display: "none" }}
+              />
+            </div>
           ) : (
             <input
               type="text"
