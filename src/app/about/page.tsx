@@ -1,12 +1,11 @@
-"use client";
+import { getOverrides } from "@/lib/wpp/overrides-server";
+import AboutClient from "./AboutClient";
 
-import SiteChrome from "@/components/SiteChrome";
-import About from "@/components/About";
+// Field overrides can change at any time from /admin/paginas — always fetch
+// fresh rather than caching a stale build-time snapshot.
+export const dynamic = "force-dynamic";
 
-export default function AboutPage() {
-  return (
-    <SiteChrome page="about">
-      <About />
-    </SiteChrome>
-  );
+export default async function AboutPage() {
+  const overrides = await getOverrides("about");
+  return <AboutClient overrides={overrides} />;
 }

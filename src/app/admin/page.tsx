@@ -27,6 +27,9 @@ export default async function AdminDashboardPage() {
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
           <span style={{ fontSize: 13, color: WPP_T.mute }}>{session?.email}</span>
+          <Link href="/admin/paginas" style={{ fontSize: 13, color: WPP_T.ink }}>
+            Páginas
+          </Link>
           <Link href="/admin/account" style={{ fontSize: 13, color: WPP_T.ink }}>
             Account
           </Link>
@@ -39,22 +42,26 @@ export default async function AdminDashboardPage() {
           Welcome{session?.name ? `, ${session.name}` : ""}.
         </h1>
         <p style={{ fontSize: 15, color: WPP_T.mute, margin: "0 0 24px" }}>
-          You&rsquo;re signed in. This is the starting point for the content
-          and blog management tools coming next.
+          You&rsquo;re signed in.
         </p>
-        <div
+        <Link
+          href="/admin/paginas"
           style={{
+            display: "block",
             background: "#fff",
             border: `1px solid ${WPP_T.hair}`,
             borderRadius: 10,
             padding: 20,
             fontSize: 14,
-            color: WPP_T.mute,
+            color: WPP_T.ink,
+            textDecoration: "none",
           }}
         >
-          Nothing to manage here yet — this confirms the login, session and
-          route protection are working end to end.
-        </div>
+          <strong>Editar contenido de las páginas →</strong>
+          <div style={{ color: WPP_T.mute, marginTop: 4 }}>
+            Cambia textos e imágenes de la web, página por página.
+          </div>
+        </Link>
       </main>
     </div>
   );
