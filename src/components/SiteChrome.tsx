@@ -4,11 +4,11 @@
 // and swapped `Cur`/`page` on client-side ?page= navigation. Real Next.js routes now own
 // that navigation, but this wrapper preserves the exact DOM shape the scroll-reveal
 // IIFE depends on (root.firstElementChild -> this outer <div>).
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Nav from "./Nav";
 import Footer from "./Footer";
-import { WPP_LINK } from "@/lib/wpp/tokens";
+import { WPP_LINK, WPP_META } from "@/lib/wpp/tokens";
 
 type WppPage = "home" | "what" | "about" | "contact" | "privacy" | "terms";
 
@@ -23,6 +23,16 @@ export default function SiteChrome({
   const onNavigate = (key: string) => {
     router.push(WPP_LINK(key));
   };
+
+  // Ported from the original site's WPP_APPLY_META: the root layout's <title>/<meta
+  // description> only cover Home (the App Router default-metadata route), so client
+  // routes update them the same way the original SPA did on ?page= navigation.
+  useEffect(() => {
+    const m = WPP_META[page] || WPP_META.home;
+    document.title = m.title;
+    const d = document.querySelector('meta[name="description"]');
+    if (d) d.setAttribute("content", m.desc);
+  }, [page]);
 
   return (
     <div>
