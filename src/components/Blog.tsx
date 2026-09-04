@@ -130,7 +130,7 @@ export default function Blog({
           >
             capital raising
           </span>
-          <span style={{ color: "#92a1d3" }}>.</span>
+          .
         </h1>
         <p style={{ fontSize: 16, lineHeight: 1.6, color: WPP_T.mute, maxWidth: 560, margin: 0 }}>
           Notes from our partners on deal-making, fundraising and the technology sectors we work in.
