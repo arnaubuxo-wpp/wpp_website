@@ -61,10 +61,61 @@ export const OVERRIDE_PAGES: PageDef[] = [
       },
     ],
   },
-  { slug: "what", label: "What we do", fields: [] },
-  { slug: "contact", label: "Contact", fields: [] },
-  { slug: "privacy", label: "Privacy", fields: [] },
-  { slug: "terms", label: "Terms", fields: [] },
+  {
+    slug: "what",
+    label: "What we do",
+    fields: [
+      {
+        key: "whatHeroLine1",
+        label: "Heading, first line",
+        type: "text",
+        fallback: "Six ways we help",
+      },
+      {
+        key: "whatHeroLine2",
+        label: "Heading, second line (italic)",
+        type: "text",
+        fallback: "One operating model.",
+      },
+    ],
+  },
+  {
+    slug: "contact",
+    label: "Contact",
+    fields: [
+      {
+        key: "contactIntro",
+        label: "Intro paragraph (dark panel, under the heading)",
+        type: "textarea",
+        fallback:
+          "The first conversation is held by a partner and is fully confidential. We come prepared with views on your sector and ideas for your company.",
+      },
+    ],
+  },
+  {
+    slug: "privacy",
+    label: "Privacy",
+    fields: [
+      {
+        key: "privacyUpdated",
+        label: "“Last updated” date",
+        type: "text",
+        fallback: "July 2026",
+      },
+    ],
+  },
+  {
+    slug: "terms",
+    label: "Terms",
+    fields: [
+      {
+        key: "termsUpdated",
+        label: "“Last updated” date",
+        type: "text",
+        fallback: "July 2026",
+      },
+    ],
+  },
 ];
 
 export function getPageDef(slug: string): PageDef | undefined {

@@ -6,6 +6,7 @@ import React from 'react';
 import { WPP_T, WPP_FONTS, WPP_GUTTER } from '@/lib/wpp/tokens';
 import { WPP_useIsMobile, WPP_useIsNarrow } from '@/lib/wpp/hooks';
 import { Tag as WPP_Tag } from '@/lib/wpp/shared';
+import { WPP_t } from '@/lib/wpp/sanity-stub';
 
 function TestimonialCard({
   t,
@@ -411,7 +412,7 @@ export default function What() {
       maxWidth: 1300,
       textWrap: 'balance'
     }
-  }, "Six ways we help", /*#__PURE__*/React.createElement("span", {
+  }, WPP_t('whatHeroLine1', 'Six ways we help'), /*#__PURE__*/React.createElement("span", {
     style: {
       color: T.blue
     }
@@ -422,7 +423,7 @@ export default function What() {
       fontWeight: 400,
       color: '#92a1d3'
     }
-  }, "One operating model."))), /*#__PURE__*/React.createElement("div", {
+  }, WPP_t('whatHeroLine2', 'One operating model.')))), /*#__PURE__*/React.createElement("div", {
     ref: servicesRef,
     style: {
       padding: `40px ${G} 100px`

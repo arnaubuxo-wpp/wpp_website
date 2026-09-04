@@ -4,6 +4,7 @@
 // including their shared local helpers LegalShell and LegalSection.
 import React from 'react';
 import { WPP_T, WPP_FONTS, WPP_GUTTER } from '@/lib/wpp/tokens';
+import { WPP_t } from '@/lib/wpp/sanity-stub';
 
 function LegalShell({
   title,
@@ -84,7 +85,7 @@ export function Privacy() {
   };
   return /*#__PURE__*/React.createElement(LegalShell, {
     title: "Privacy policy",
-    updated: "July 2026"
+    updated: WPP_t('privacyUpdated', 'July 2026')
   }, /*#__PURE__*/React.createElement(LegalSection, {
     heading: "Who we are"
   }, "White Peak Partners S.L. (trading as \"White Peak Partners\", \"we\", \"us\") is a strategic and financial advisory boutique. For the purposes of the EU GDPR, the data controller is White Peak Partners S.L., Alfambra 11–13, 3-2a, 08032 Barcelona, Spain (Tax ID B06995112), registered in the Barcelona Companies Registry. For any question about this policy or your personal data, contact us at", ' ', /*#__PURE__*/React.createElement("a", {
@@ -115,7 +116,7 @@ export function Terms() {
   };
   return /*#__PURE__*/React.createElement(LegalShell, {
     title: "Terms of use & legal notice",
-    updated: "July 2026"
+    updated: WPP_t('termsUpdated', 'July 2026')
   }, /*#__PURE__*/React.createElement(LegalSection, {
     heading: "Legal notice (aviso legal)"
   }, "In accordance with Spanish Law 34/2002 on Information Society Services and Electronic Commerce (LSSI-CE), this website is operated by White Peak Partners S.L. (\"White Peak Partners\"), with registered office at Alfambra 11–13, 3-2a, 08032 Barcelona, Spain, Tax ID B06995112, registered in the Barcelona Companies Registry.", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), "Contact: ", /*#__PURE__*/React.createElement("a", {

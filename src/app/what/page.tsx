@@ -1,12 +1,11 @@
-"use client";
+import { getOverrides } from "@/lib/wpp/overrides-server";
+import WhatClient from "./WhatClient";
 
-import SiteChrome from "@/components/SiteChrome";
-import What from "@/components/What";
+// Field overrides can change at any time from /admin/paginas — always fetch
+// fresh rather than caching a stale build-time snapshot.
+export const dynamic = "force-dynamic";
 
-export default function WhatPage() {
-  return (
-    <SiteChrome page="what">
-      <What />
-    </SiteChrome>
-  );
+export default async function WhatPage() {
+  const overrides = await getOverrides("what");
+  return <WhatClient overrides={overrides} />;
 }

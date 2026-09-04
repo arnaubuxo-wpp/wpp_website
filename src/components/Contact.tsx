@@ -6,6 +6,7 @@ import React from 'react';
 import { WPP_T, WPP_FONTS, WPP_GUTTER } from '@/lib/wpp/tokens';
 import { WPP_useIsMobile, WPP_useIsNarrow } from '@/lib/wpp/hooks';
 import { Tag as WPP_Tag } from '@/lib/wpp/shared';
+import { WPP_t } from '@/lib/wpp/sanity-stub';
 
 function ContactRow({
   row,
@@ -229,7 +230,7 @@ export default function Contact() {
       opacity: 0.85,
       maxWidth: 480
     }
-  }, "The first conversation is held by a partner and is fully confidential. We come prepared with views on your sector and ideas for your company."))), /*#__PURE__*/React.createElement("div", {
+  }, WPP_t('contactIntro', "The first conversation is held by a partner and is fully confidential. We come prepared with views on your sector and ideas for your company.")))), /*#__PURE__*/React.createElement("div", {
     style: {
       background: '#fff',
       padding: `100px ${GV}`,
