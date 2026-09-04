@@ -412,11 +412,14 @@ export default function What() {
       maxWidth: 1300,
       textWrap: 'balance'
     }
-  }, WPP_t('whatHeroLine1', 'Six ways we help'), /*#__PURE__*/React.createElement("span", {
+  }, /*#__PURE__*/React.createElement("span", {
+    "data-override-key": "whatHeroLine1"
+  }, WPP_t('whatHeroLine1', 'Six ways we help')), /*#__PURE__*/React.createElement("span", {
     style: {
       color: T.blue
     }
   }, "."), " ", /*#__PURE__*/React.createElement("span", {
+    "data-override-key": "whatHeroLine2",
     style: {
       fontFamily: F.serif,
       fontStyle: 'italic',

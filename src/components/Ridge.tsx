@@ -259,6 +259,7 @@ function Ridge({
       };
     }, [reduced]);
     return /*#__PURE__*/React.createElement("div", {
+      "data-override-key": "homeHeroImage",
       style: {
         position: 'relative',
         overflow: 'hidden',
@@ -427,6 +428,7 @@ function Ridge({
       color: '#92a1d3'
     }
   }, ".")), /*#__PURE__*/React.createElement("div", {
+    "data-override-key": "homeSubhead",
     style: {
       marginTop: 32,
       fontSize: 18,
@@ -580,6 +582,7 @@ function Ridge({
       padding: `60px ${G} 80px`
     }
   }, /*#__PURE__*/React.createElement("div", {
+    "data-override-key": "homeBandImage",
     style: {
       position: 'relative',
       minHeight: 560,

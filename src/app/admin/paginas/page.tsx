@@ -2,8 +2,7 @@ import Link from "next/link";
 import { OVERRIDE_PAGES, getPageDef } from "@/lib/wpp/override-fields";
 import { getOverrides } from "@/lib/wpp/overrides-server";
 import { WPP_T, WPP_FONTS } from "@/lib/wpp/tokens";
-import PaginasForm from "./PaginasForm";
-import PagePreview from "./PagePreview";
+import PaginasEditor from "./PaginasEditor";
 
 export const dynamic = "force-dynamic";
 
@@ -70,19 +69,7 @@ export default async function PaginasPage({
           })}
         </nav>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))",
-            gap: 24,
-            alignItems: "start",
-          }}
-        >
-          <PaginasForm pageDef={pageDef} initialValues={overrides} />
-          <div style={{ height: "calc(100vh - 220px)", minHeight: 480, position: "sticky", top: 32 }}>
-            <PagePreview path={pageDef.path} label={pageDef.label} />
-          </div>
-        </div>
+        <PaginasEditor pageDef={pageDef} initialValues={overrides} />
       </main>
     </div>
   );

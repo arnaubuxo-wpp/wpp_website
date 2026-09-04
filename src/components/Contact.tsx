@@ -223,6 +223,7 @@ export default function Contact() {
       color: '#92a1d3'
     }
   }, "company is going.")), /*#__PURE__*/React.createElement("div", {
+    "data-override-key": "contactIntro",
     style: {
       marginTop: 32,
       fontSize: 18,

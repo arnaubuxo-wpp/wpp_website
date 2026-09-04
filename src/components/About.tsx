@@ -127,6 +127,7 @@ export default function About() {
       paddingBottom: 12
     }
   }, /*#__PURE__*/React.createElement("div", {
+    "data-override-key": "aboutPullquote",
     style: {
       fontFamily: F.serif,
       fontStyle: 'italic',

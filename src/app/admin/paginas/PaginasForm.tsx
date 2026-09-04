@@ -8,9 +8,12 @@ import { WPP_T, WPP_FONTS } from "@/lib/wpp/tokens";
 export default function PaginasForm({
   pageDef,
   initialValues,
+  onFieldActivate,
 }: {
   pageDef: PageDef;
   initialValues: Record<string, string>;
+  /** Called with a field's key on focus/hover, and with null when it's no longer active. */
+  onFieldActivate?: (key: string | null) => void;
 }) {
   const router = useRouter();
   const [values, setValues] = useState<Record<string, string>>(initialValues);
@@ -102,7 +105,12 @@ export default function PaginasForm({
       }}
     >
       {pageDef.fields.map((field) => (
-        <label key={field.key} style={{ display: "block" }}>
+        <label
+          key={field.key}
+          style={{ display: "block" }}
+          onMouseEnter={() => onFieldActivate?.(field.key)}
+          onMouseLeave={() => onFieldActivate?.(null)}
+        >
           <span
             style={{
               display: "block",
@@ -132,6 +140,8 @@ export default function PaginasForm({
               value={values[field.key] ?? ""}
               placeholder={field.fallback}
               onChange={(e) => update(field.key, e.target.value)}
+              onFocus={() => onFieldActivate?.(field.key)}
+              onBlur={() => onFieldActivate?.(null)}
               style={{ ...inputStyle, resize: "vertical", fontFamily: "inherit" }}
             />
           ) : field.type === "image" ? (
@@ -158,6 +168,8 @@ export default function PaginasForm({
                   value={values[field.key] ?? ""}
                   placeholder={field.fallback}
                   onChange={(e) => update(field.key, e.target.value)}
+                  onFocus={() => onFieldActivate?.(field.key)}
+                  onBlur={() => onFieldActivate?.(null)}
                   style={{ ...inputStyle, flex: 1 }}
                 />
                 <button
@@ -200,6 +212,8 @@ export default function PaginasForm({
               value={values[field.key] ?? ""}
               placeholder={field.fallback}
               onChange={(e) => update(field.key, e.target.value)}
+              onFocus={() => onFieldActivate?.(field.key)}
+              onBlur={() => onFieldActivate?.(null)}
               style={inputStyle}
             />
           )}
