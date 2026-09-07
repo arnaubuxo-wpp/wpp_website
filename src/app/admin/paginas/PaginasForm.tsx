@@ -108,8 +108,6 @@ export default function PaginasForm({
         <label
           key={field.key}
           style={{ display: "block" }}
-          onMouseEnter={() => onFieldActivate?.(field.key)}
-          onMouseLeave={() => onFieldActivate?.(null)}
         >
           <span
             style={{
