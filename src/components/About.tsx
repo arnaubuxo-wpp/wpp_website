@@ -192,7 +192,7 @@ export default function About() {
     style: {
       margin: '0 0 22px'
     }
-  }, "What they learned, on that side of the table, is that the technical excellence of a banker is necessary but not sufficient. The real difference is whether the advisor understands the business well enough to ", /*#__PURE__*/React.createElement("em", {
+  }, "What they learned in bulge-bracket M&A is that the technical excellence of a banker is necessary but not sufficient. The real difference is whether the advisor understands the business well enough to ", /*#__PURE__*/React.createElement("em", {
     style: {
       color: T.blue
     }
