@@ -24,7 +24,7 @@ export default async function AdminBlogPage() {
           White Peak Partners — Admin
         </div>
         <Link href="/admin" style={{ fontSize: 13, color: WPP_T.ink }}>
-          ← Volver
+          ← Back
         </Link>
       </header>
 
@@ -43,7 +43,7 @@ export default async function AdminBlogPage() {
               Blog
             </h1>
             <p style={{ fontSize: 14, color: WPP_T.mute, margin: 0 }}>
-              Crea, edita, programa y publica artículos del blog.
+              Create, edit, schedule and publish blog articles.
             </p>
           </div>
           <Link
@@ -59,7 +59,7 @@ export default async function AdminBlogPage() {
               textDecoration: "none",
             }}
           >
-            + Nuevo artículo
+            + New article
           </Link>
         </div>
 

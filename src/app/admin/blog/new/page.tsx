@@ -24,16 +24,16 @@ export default async function NewBlogPostPage() {
           White Peak Partners — Admin
         </div>
         <Link href="/admin/blog" style={{ fontSize: 13, color: WPP_T.ink }}>
-          ← Volver al blog
+          ← Back to blog
         </Link>
       </header>
 
       <main style={{ padding: 32, maxWidth: 780 }}>
         <h1 style={{ fontSize: 22, fontWeight: 600, color: WPP_T.ink, margin: "0 0 4px" }}>
-          Nuevo artículo
+          New article
         </h1>
         <p style={{ fontSize: 14, color: WPP_T.mute, margin: "0 0 20px" }}>
-          Escribe el artículo, elige su estado y guarda cuando esté listo.
+          Write the article, choose its status, and save when it&rsquo;s ready.
         </p>
 
         <PostEditor categories={categories} />

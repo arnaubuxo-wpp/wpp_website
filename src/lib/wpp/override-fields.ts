@@ -39,7 +39,7 @@ export const OVERRIDE_PAGES: PageDef[] = [
         type: "image",
         fallback: "/assets/hero-mountain-poster.jpg",
         helpText:
-          "La foto/póster de fondo detrás del titular grande, en la primera sección de la portada. Sube una imagen o pega una URL.",
+          "The photo/poster behind the big headline, in the first section of the homepage. Upload an image or paste a URL.",
       },
       {
         key: "homeSubhead",
@@ -48,21 +48,21 @@ export const OVERRIDE_PAGES: PageDef[] = [
         fallback:
           "We sit on your side of the table — through the fundraise, the sale, or the acquisition that defines the company.",
         helpText:
-          "En la portada, justo debajo del titular grande (\"Partners to the founders...\"), al principio de la página.",
+          "On the homepage, right below the big headline (\"Partners to the founders...\"), near the top of the page.",
       },
       {
         key: "homeHeroCta1",
         label: "Hero button 1",
         type: "text",
         fallback: "Get in touch →",
-        helpText: "El primer botón (azul), justo debajo del subtítulo de la portada.",
+        helpText: "The first button (blue), right below the homepage subheading.",
       },
       {
         key: "homeHeroCta2",
         label: "Hero button 2",
         type: "text",
         fallback: "What we do",
-        helpText: "El segundo botón (contorno), al lado del primero en la portada.",
+        helpText: "The second button (outline), next to the first one on the homepage.",
       },
       {
         key: "homeIntroPara1",
@@ -70,8 +70,7 @@ export const OVERRIDE_PAGES: PageDef[] = [
         type: "textarea",
         fallback:
           "Based in London and Barcelona, we work exclusively with technology-driven companies — helping European tech businesses unlock growth and generate value for their founders, investors and executives.",
-        helpText:
-          "El primer párrafo de la sección de introducción, debajo de la portada.",
+        helpText: "The first paragraph of the intro section, below the hero.",
       },
       {
         key: "homeIntroPara2",
@@ -79,8 +78,7 @@ export const OVERRIDE_PAGES: PageDef[] = [
         type: "textarea",
         fallback:
           "We are former senior operators, engineers, VC investors and bulge-bracket bankers. The client list is small, senior partners stay on every mandate, and we treat every engagement as if our own company depended on it.",
-        helpText:
-          "El segundo párrafo de la sección de introducción, justo debajo del primero.",
+        helpText: "The second paragraph of the intro section, right below the first.",
       },
       {
         key: "homeServicesHeading",
@@ -89,7 +87,7 @@ export const OVERRIDE_PAGES: PageDef[] = [
         fallback:
           "Strategic and corporate finance advisory — usually leading to a transaction",
         helpText:
-          "El titular sobre la cuadrícula de servicios (Capital raise, Sell-side M&A, etc.).",
+          "The heading above the services grid (Capital raise, Sell-side M&A, etc.).",
       },
       {
         key: "homeBandImage",
@@ -97,7 +95,7 @@ export const OVERRIDE_PAGES: PageDef[] = [
         type: "image",
         fallback: "/assets/peak-band.jpg",
         helpText:
-          "La franja con foto de fondo a mitad de la portada (entre las secciones de texto). Sube una imagen o pega una URL.",
+          "The photo band midway down the homepage (between the text sections). Upload an image or paste a URL.",
       },
       {
         key: "homeBandQuote",
@@ -105,22 +103,21 @@ export const OVERRIDE_PAGES: PageDef[] = [
         type: "textarea",
         fallback:
           "\"We work with a small number of mandates at a time so every client receives a premium, partner-led service.\"",
-        helpText: "La cita en cursiva sobre la foto de la franja a mitad de la portada.",
+        helpText: "The italic quote over the band photo midway down the homepage.",
       },
       {
         key: "homeNewsHeading",
         label: "News section heading",
         type: "text",
         fallback: "Hand-picked reading",
-        helpText: "El titular sobre la sección de noticias/prensa (\"Hand-picked reading\").",
+        helpText: "The heading above the news/press section (\"Hand-picked reading\").",
       },
       {
         key: "homeContactHeading",
         label: "Contact band heading",
         type: "text",
         fallback: "Tell us where your company is going",
-        helpText:
-          "El titular grande en el panel oscuro de contacto, al final de la portada.",
+        helpText: "The big heading in the dark contact panel, at the bottom of the homepage.",
       },
       {
         key: "homeContactIntro",
@@ -128,28 +125,28 @@ export const OVERRIDE_PAGES: PageDef[] = [
         type: "textarea",
         fallback: "First conversation is confidential and obligation-free. We come prepared.",
         helpText:
-          "El texto pequeño debajo del titular, en el panel oscuro de contacto al final de la portada.",
+          "The small text below the heading, in the dark contact panel at the bottom of the homepage.",
       },
       {
         key: "homeContactLabel",
         label: "\"Contact\" label",
         type: "text",
         fallback: "Contact",
-        helpText: "La etiqueta pequeña en mayúsculas sobre el email, en el panel de contacto.",
+        helpText: "The small uppercase label above the email, in the contact panel.",
       },
       {
         key: "homeContactEmail",
         label: "Contact email",
         type: "text",
         fallback: "info@whitepeakpartners.com",
-        helpText: "El email mostrado en el panel de contacto, al final de la portada.",
+        helpText: "The email shown in the contact panel, at the bottom of the homepage.",
       },
       {
         key: "homeLinkedinLabel",
         label: "LinkedIn button label",
         type: "text",
         fallback: "LinkedIn",
-        helpText: "El texto del botón de LinkedIn, en el panel de contacto.",
+        helpText: "The text on the LinkedIn button, in the contact panel.",
       },
       {
         key: "homeOfficesLabel",
@@ -157,36 +154,35 @@ export const OVERRIDE_PAGES: PageDef[] = [
         type: "text",
         fallback: "Offices",
         helpText:
-          "La etiqueta pequeña en mayúsculas sobre \"London / Barcelona\", en el panel de contacto.",
+          "The small uppercase label above \"London / Barcelona\", in the contact panel.",
       },
       {
         key: "homeNewsletterCta",
         label: "Newsletter button",
         type: "text",
         fallback: "Subscribe to our newsletter",
-        helpText: "El botón de suscripción a la newsletter, en el panel de contacto.",
+        helpText: "The newsletter sign-up button, in the contact panel.",
       },
       {
         key: "homeClientsHeading",
         label: "Clients section heading",
         type: "text",
         fallback: "Selected companies we've worked with",
-        helpText: "El titular sobre el muro de logos de clientes.",
+        helpText: "The heading above the client logo wall.",
       },
       {
         key: "homeValuesHeading",
         label: "Values section heading",
         type: "text",
         fallback: "Values and culture",
-        helpText: "El titular de la sección \"Values and culture\".",
+        helpText: "The heading of the \"Values and culture\" section.",
       },
       {
         key: "homeValuesKicker",
         label: "Values section kicker",
         type: "text",
         fallback: "What shapes our work",
-        helpText:
-          "La frase en cursiva bajo el titular de la sección \"Values and culture\".",
+        helpText: "The italic line under the heading of the \"Values and culture\" section.",
       },
       {
         key: "homeValuesIntro",
@@ -194,14 +190,14 @@ export const OVERRIDE_PAGES: PageDef[] = [
         type: "textarea",
         fallback:
           "A well-defined set of values and culture characterise our approach — and the work we choose to take on.",
-        helpText: "El párrafo introductorio de la sección \"Values and culture\".",
+        helpText: "The intro paragraph of the \"Values and culture\" section.",
       },
       {
         key: "homeMandatesHeading",
         label: "Mandates section heading",
         type: "text",
         fallback: "Selected mandates",
-        helpText: "El titular sobre la vitrina de mandatos/deals seleccionados.",
+        helpText: "The heading above the selected mandates/deals showcase.",
       },
     ],
   },
@@ -216,7 +212,7 @@ export const OVERRIDE_PAGES: PageDef[] = [
         type: "image",
         fallback: "/assets/hero-mountain-poster.jpg",
         helpText:
-          "La foto de fondo detrás del titular, arriba del todo en la página \"About us\". Sube una imagen o pega una URL.",
+          "The background photo behind the heading, at the top of the \"About us\" page. Upload an image or paste a URL.",
       },
       {
         key: "aboutHeroLine2",
@@ -224,7 +220,7 @@ export const OVERRIDE_PAGES: PageDef[] = [
         type: "text",
         fallback: "by design",
         helpText:
-          "La segunda línea del titular grande (\"A focused advisor, by design.\"), arriba del todo en \"About us\".",
+          "The second line of the big heading (\"A focused advisor, by design.\"), at the top of \"About us\".",
       },
       {
         key: "aboutPullquote",
@@ -233,7 +229,7 @@ export const OVERRIDE_PAGES: PageDef[] = [
         fallback:
           "We work with a small number of clients at any one time — so each mandate gets the senior attention, sector depth and bespoke strategy it deserves.",
         helpText:
-          "La cita destacada a la derecha del titular, arriba del todo en la página \"About us\".",
+          "The pull quote to the right of the heading, at the top of the \"About us\" page.",
       },
       {
         key: "aboutSectionIntro",
@@ -242,7 +238,7 @@ export const OVERRIDE_PAGES: PageDef[] = [
         fallback:
           "Most M&A advisors are organised around the deal. We organise around the company.",
         helpText:
-          "La primera frase destacada de la sección de texto principal, debajo de la cita.",
+          "The first highlighted sentence of the main text section, below the quote.",
       },
       {
         key: "aboutFirmOriginContinued",
@@ -251,7 +247,7 @@ export const OVERRIDE_PAGES: PageDef[] = [
         fallback:
           ", working on transactions in the hundreds of millions. They then set out to build a firm that could bring that experience to the small- and mid-market — with closer collaboration with founders and investors than a bulge-bracket process allows.",
         helpText:
-          "Continúa la frase que empieza \"The partners spent their early careers at J.P. Morgan, Bank of America, HSBC and BNP Paribas\" (los nombres de los bancos están fijos, esto es el resto de la frase).",
+          "Continues the sentence that starts \"The partners spent their early careers at J.P. Morgan, Bank of America, HSBC and BNP Paribas\" (the bank names are fixed — this is the rest of the sentence).",
       },
       {
         key: "aboutDifferentiatorStatement",
@@ -260,7 +256,7 @@ export const OVERRIDE_PAGES: PageDef[] = [
         fallback:
           "What they learned in bulge-bracket M&A is that the technical excellence of a banker is necessary but not sufficient. The real difference is whether the advisor understands the business well enough to ",
         helpText:
-          "El párrafo que empieza \"What they learned in bulge-bracket M&A is that...\". Termina con \"shape it for the moment, not just to price it.\" (ese final está fijo).",
+          "The paragraph that starts \"What they learned in bulge-bracket M&A is that...\". It ends with \"shape it for the moment, not just to price it.\" (that ending is fixed).",
       },
       {
         key: "aboutClosingStatement",
@@ -268,7 +264,7 @@ export const OVERRIDE_PAGES: PageDef[] = [
         type: "textarea",
         fallback:
           "That is the firm. Fewer mandates than we could take, more time per company than is profitable on paper, and an alignment structure that means we win only when the deal is succesful.",
-        helpText: "El último párrafo de la sección de texto principal (\"That is the firm...\").",
+        helpText: "The last paragraph of the main text section (\"That is the firm...\").",
       },
       {
         key: "aboutTimelineIntro",
@@ -276,8 +272,7 @@ export const OVERRIDE_PAGES: PageDef[] = [
         type: "textarea",
         fallback:
           "A well-defined set of values and culture characterise our approach — and the work we choose to take on.",
-        helpText:
-          "El párrafo introductorio justo antes de la línea de tiempo / hitos de la firma.",
+        helpText: "The intro paragraph just before the firm's timeline/milestones.",
       },
     ],
   },
@@ -291,15 +286,14 @@ export const OVERRIDE_PAGES: PageDef[] = [
         label: "Heading, first line",
         type: "text",
         fallback: "Six ways we help",
-        helpText: "La primera línea del titular grande, arriba del todo en \"What we do\".",
+        helpText: "The first line of the big heading, at the top of \"What we do\".",
       },
       {
         key: "whatHeroLine2",
         label: "Heading, second line (italic)",
         type: "text",
         fallback: "One operating model.",
-        helpText:
-          "La segunda línea del titular, en cursiva y color lila, justo debajo de la primera línea.",
+        helpText: "The second line of the heading, in italic lilac, right below the first line.",
       },
       {
         key: "whatTestimonialsHeadingPre",
@@ -307,29 +301,28 @@ export const OVERRIDE_PAGES: PageDef[] = [
         type: "text",
         fallback: "What the ",
         helpText:
-          "Primera parte del titular de la sección de testimonios: \"What the [founders] we worked with said.\"",
+          "First part of the testimonials section heading: \"What the [founders] we worked with said.\"",
       },
       {
         key: "whatTestimonialsHeadingEmphasis",
         label: "Testimonials heading (emphasised word)",
         type: "text",
         fallback: "founders",
-        helpText:
-          "La palabra en cursiva/color lila del titular de testimonios (por defecto \"founders\").",
+        helpText: "The italic lilac word in the testimonials heading (default \"founders\").",
       },
       {
         key: "whatTestimonialsHeadingPost",
         label: "Testimonials heading (after emphasis)",
         type: "text",
         fallback: " we worked with said",
-        helpText: "Última parte del titular de la sección de testimonios.",
+        helpText: "Last part of the testimonials section heading.",
       },
       {
         key: "whatSectorsHeading",
         label: "Sectors section heading",
         type: "text",
         fallback: "Tech-driven companies",
-        helpText: "El titular sobre la sección de sectores, hacia el final de \"What we do\".",
+        helpText: "The heading above the sectors section, near the end of \"What we do\".",
       },
     ],
   },
@@ -343,15 +336,14 @@ export const OVERRIDE_PAGES: PageDef[] = [
         label: "Heading, first line",
         type: "text",
         fallback: "Tell us where your",
-        helpText: "La primera línea del titular grande, arriba del todo en \"Contact\".",
+        helpText: "The first line of the big heading, at the top of \"Contact\".",
       },
       {
         key: "contactHeroHeadingItalic",
         label: "Heading, second line (italic)",
         type: "text",
         fallback: "company is going.",
-        helpText:
-          "La segunda línea del titular, en cursiva y color lila, justo debajo de la primera.",
+        helpText: "The second line of the heading, in italic lilac, right below the first.",
       },
       {
         key: "contactIntro",
@@ -360,14 +352,14 @@ export const OVERRIDE_PAGES: PageDef[] = [
         fallback:
           "The first conversation is held by a partner and is fully confidential. We come prepared with views on your sector and ideas for your company.",
         helpText:
-          "El párrafo bajo el titular, dentro del panel oscuro de la izquierda, arriba del todo en \"Contact\".",
+          "The paragraph under the heading, inside the dark panel on the left, at the top of \"Contact\".",
       },
       {
         key: "contactFormHeading",
         label: "Right-panel heading",
         type: "text",
         fallback: "Start the conversation",
-        helpText: "El titular del panel derecho (blanco), junto al email de contacto.",
+        helpText: "The heading of the right-hand (white) panel, next to the contact email.",
       },
       {
         key: "contactFormIntro",
@@ -375,14 +367,14 @@ export const OVERRIDE_PAGES: PageDef[] = [
         type: "textarea",
         fallback:
           "Write to us with a few lines about your company, the stage you're at, and what you're hoping to achieve.",
-        helpText: "El párrafo bajo el titular del panel derecho, antes del botón de email.",
+        helpText: "The paragraph under the right-panel heading, before the email button.",
       },
       {
         key: "contactConfidentialNote",
         label: "Confidentiality note (small print, right panel)",
         type: "text",
         fallback: "Anything you share is treated as confidential.",
-        helpText: "El texto pequeño bajo el botón de email, en el panel derecho.",
+        helpText: "The small text below the email button, in the right panel.",
       },
       {
         key: "contactConfidenceNote",
@@ -390,7 +382,7 @@ export const OVERRIDE_PAGES: PageDef[] = [
         type: "textarea",
         fallback:
           "Every conversation is held in confidence. We can countersign an NDA before the first meeting.",
-        helpText: "El texto dentro de la caja azul, cerca del final de la página \"Contact\".",
+        helpText: "The text inside the blue box, near the bottom of the \"Contact\" page.",
       },
     ],
   },
@@ -404,15 +396,14 @@ export const OVERRIDE_PAGES: PageDef[] = [
         label: "Page title",
         type: "text",
         fallback: "Privacy policy",
-        helpText: "El titular grande, arriba del todo en la página \"Privacy\".",
+        helpText: "The big heading, at the top of the \"Privacy\" page.",
       },
       {
         key: "privacyUpdated",
         label: "“Last updated” date",
         type: "text",
         fallback: "July 2026",
-        helpText:
-          "La fecha pequeña bajo el titular \"Privacy policy\", arriba del todo en la página.",
+        helpText: "The small date under the \"Privacy policy\" heading, at the top of the page.",
       },
     ],
   },
@@ -426,7 +417,7 @@ export const OVERRIDE_PAGES: PageDef[] = [
         label: "Page title",
         type: "text",
         fallback: "Terms of use & legal notice",
-        helpText: "El titular grande, arriba del todo en la página \"Terms\".",
+        helpText: "The big heading, at the top of the \"Terms\" page.",
       },
       {
         key: "termsUpdated",
@@ -434,7 +425,7 @@ export const OVERRIDE_PAGES: PageDef[] = [
         type: "text",
         fallback: "July 2026",
         helpText:
-          "La fecha pequeña bajo el titular \"Terms of use & legal notice\", arriba del todo en la página.",
+          "The small date under the \"Terms of use & legal notice\" heading, at the top of the page.",
       },
     ],
   },

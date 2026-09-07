@@ -32,18 +32,18 @@ export default async function PaginasPage({
           White Peak Partners — Admin
         </div>
         <Link href="/admin" style={{ fontSize: 13, color: WPP_T.ink }}>
-          ← Volver
+          ← Back
         </Link>
       </header>
 
       <main style={{ padding: 32, maxWidth: 1800 }}>
         <h1 style={{ fontSize: 22, fontWeight: 600, color: WPP_T.ink, margin: "0 0 4px" }}>
-          Contenido de las páginas
+          Page content
         </h1>
         <p style={{ fontSize: 14, color: WPP_T.mute, margin: "0 0 20px" }}>
-          Edita textos e imágenes de la web página por página. Los cambios se
-          publican al instante. A la derecha tienes la página real para
-          ubicar cada campo.
+          Edit text and images on the site, page by page. Changes go live
+          instantly. On the right is the real page, so you can see exactly
+          where each field appears.
         </p>
 
         <nav style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 24 }}>

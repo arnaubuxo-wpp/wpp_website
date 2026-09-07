@@ -61,7 +61,7 @@ export default function PostEditor({
       const url = await uploadImage(file);
       setCoverImage(url);
     } catch {
-      setError("No se ha podido subir la imagen de portada.");
+      setError("Couldn't upload the cover image.");
     } finally {
       setUploadingCover(false);
     }
@@ -74,7 +74,7 @@ export default function PostEditor({
     setSuccess(false);
 
     if (status === "scheduled" && !publishAt) {
-      setError("Elige una fecha para programar la publicación.");
+      setError("Choose a date to schedule the publication.");
       setSaving(false);
       return;
     }
@@ -100,7 +100,7 @@ export default function PostEditor({
       });
       const data = await res.json();
       if (!res.ok) {
-        setError(data.error || "Algo ha salido mal.");
+        setError(data.error || "Something went wrong.");
         setSaving(false);
         return;
       }
@@ -112,7 +112,7 @@ export default function PostEditor({
         router.refresh();
       }
     } catch {
-      setError("Algo ha salido mal. Inténtalo de nuevo.");
+      setError("Something went wrong. Please try again.");
       setSaving(false);
     }
   }
@@ -130,17 +130,17 @@ export default function PostEditor({
         gap: 20,
       }}
     >
-      <Field label="Título">
+      <Field label="Title">
         <input
           type="text"
           value={title}
           onChange={(e) => handleTitleChange(e.target.value)}
-          placeholder="Título del artículo"
+          placeholder="Article title"
           style={inputStyle}
         />
       </Field>
 
-      <Field label="Slug (URL)" help={`Se publicará en /blog/${slug || "..."}`}>
+      <Field label="Slug (URL)" help={`Will be published at /blog/${slug || "..."}`}>
         <input
           type="text"
           value={slug}
@@ -148,12 +148,12 @@ export default function PostEditor({
             setSlugTouched(true);
             setSlug(slugify(e.target.value));
           }}
-          placeholder="titulo-del-articulo"
+          placeholder="article-title"
           style={inputStyle}
         />
       </Field>
 
-      <Field label="Extracto" help="Resumen breve que aparece en el listado del blog.">
+      <Field label="Excerpt" help="Short summary shown in the blog listing.">
         <textarea
           rows={2}
           value={excerpt}
@@ -162,7 +162,7 @@ export default function PostEditor({
         />
       </Field>
 
-      <Field label="Imagen de portada">
+      <Field label="Cover image">
         <div>
           {coverImage && (
             // eslint-disable-next-line @next/next/no-img-element
@@ -194,7 +194,7 @@ export default function PostEditor({
               disabled={uploadingCover}
               style={secondaryButtonStyle}
             >
-              {uploadingCover ? "Subiendo…" : "Subir imagen"}
+              {uploadingCover ? "Uploading…" : "Upload image"}
             </button>
           </div>
           <input
@@ -211,13 +211,13 @@ export default function PostEditor({
         </div>
       </Field>
 
-      <Field label="Categoría">
+      <Field label="Category">
         <select
           value={categoryId}
           onChange={(e) => setCategoryId(e.target.value ? Number(e.target.value) : "")}
           style={inputStyle}
         >
-          <option value="">Sin categoría</option>
+          <option value="">No category</option>
           {categories.map((c) => (
             <option key={c.id} value={c.id}>
               {c.name}
@@ -226,11 +226,11 @@ export default function PostEditor({
         </select>
       </Field>
 
-      <Field label="Contenido">
+      <Field label="Content">
         <RichTextEditor value={content} onChange={setContent} onUploadImage={uploadImage} />
       </Field>
 
-      <Field label="Estado">
+      <Field label="Status">
         <div style={{ display: "flex", gap: 8, marginBottom: status === "scheduled" ? 10 : 0 }}>
           {(["draft", "published", "scheduled"] as PostStatus[]).map((s) => (
             <button
@@ -249,7 +249,7 @@ export default function PostEditor({
                 fontFamily: WPP_FONTS.sans,
               }}
             >
-              {s === "draft" ? "Borrador" : s === "published" ? "Publicar ahora" : "Programar"}
+              {s === "draft" ? "Draft" : s === "published" ? "Publish now" : "Schedule"}
             </button>
           ))}
         </div>
@@ -264,7 +264,7 @@ export default function PostEditor({
       </Field>
 
       {error && <Banner kind="error">{error}</Banner>}
-      {success && <Banner kind="success">Guardado correctamente.</Banner>}
+      {success && <Banner kind="success">Saved successfully.</Banner>}
 
       <button
         type="submit"
@@ -283,7 +283,7 @@ export default function PostEditor({
           fontFamily: WPP_FONTS.sans,
         }}
       >
-        {saving ? "Guardando…" : isNew ? "Crear artículo" : "Guardar cambios"}
+        {saving ? "Saving…" : isNew ? "Create article" : "Save changes"}
       </button>
     </form>
   );

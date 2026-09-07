@@ -23,7 +23,7 @@ export default function RichTextEditor({
       StarterKit,
       Link.configure({ openOnClick: false, autolink: true }),
       Image,
-      Placeholder.configure({ placeholder: "Escribe el contenido del artículo…" }),
+      Placeholder.configure({ placeholder: "Write the article content…" }),
     ],
     content: value || "",
     onUpdate: ({ editor }) => onChange(editor.getHTML()),
@@ -37,7 +37,7 @@ export default function RichTextEditor({
   const setLink = useCallback(() => {
     if (!editor) return;
     const previous = editor.getAttributes("link").href as string | undefined;
-    const url = window.prompt("URL del enlace:", previous || "https://");
+    const url = window.prompt("Link URL:", previous || "https://");
     if (url === null) return;
     if (url === "") {
       editor.chain().focus().extendMarkRange("link").unsetLink().run();
@@ -59,13 +59,13 @@ export default function RichTextEditor({
           const url = await onUploadImage(file);
           editor.chain().focus().setImage({ src: url }).run();
         } catch {
-          window.alert("No se ha podido subir la imagen.");
+          window.alert("Couldn't upload the image.");
         }
       };
       input.click();
       return;
     }
-    const url = window.prompt("URL de la imagen:");
+    const url = window.prompt("Image URL:");
     if (url) editor.chain().focus().setImage({ src: url }).run();
   }, [editor, onUploadImage]);
 
@@ -110,19 +110,19 @@ export default function RichTextEditor({
         </ToolbarButton>
         <Divider />
         <ToolbarButton active={editor.isActive("bulletList")} onClick={() => editor.chain().focus().toggleBulletList().run()}>
-          • Lista
+          • List
         </ToolbarButton>
         <ToolbarButton active={editor.isActive("orderedList")} onClick={() => editor.chain().focus().toggleOrderedList().run()}>
-          1. Lista
+          1. List
         </ToolbarButton>
         <ToolbarButton active={editor.isActive("blockquote")} onClick={() => editor.chain().focus().toggleBlockquote().run()}>
-          &ldquo; Cita
+          &ldquo; Quote
         </ToolbarButton>
         <Divider />
         <ToolbarButton active={editor.isActive("link")} onClick={setLink}>
-          Enlace
+          Link
         </ToolbarButton>
-        <ToolbarButton onClick={insertImage}>Imagen</ToolbarButton>
+        <ToolbarButton onClick={insertImage}>Image</ToolbarButton>
         <Divider />
         <ToolbarButton onClick={() => editor.chain().focus().undo().run()}>↺</ToolbarButton>
         <ToolbarButton onClick={() => editor.chain().focus().redo().run()}>↻</ToolbarButton>

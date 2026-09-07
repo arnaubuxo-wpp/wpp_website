@@ -28,7 +28,7 @@ export default async function AdminDashboardPage() {
         <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
           <span style={{ fontSize: 13, color: WPP_T.mute }}>{session?.email}</span>
           <Link href="/admin/paginas" style={{ fontSize: 13, color: WPP_T.ink }}>
-            Páginas
+            Pages
           </Link>
           <Link href="/admin/blog" style={{ fontSize: 13, color: WPP_T.ink }}>
             Blog
@@ -63,9 +63,9 @@ export default async function AdminDashboardPage() {
             textDecoration: "none",
           }}
         >
-          <strong>Editar contenido de las páginas →</strong>
+          <strong>Edit page content →</strong>
           <div style={{ color: WPP_T.mute, marginTop: 4 }}>
-            Cambia textos e imágenes de la web, página por página.
+            Change text and images on the site, page by page.
           </div>
         </Link>
         <Link
@@ -82,9 +82,9 @@ export default async function AdminDashboardPage() {
             marginTop: 16,
           }}
         >
-          <strong>Gestionar el blog →</strong>
+          <strong>Manage the blog →</strong>
           <div style={{ color: WPP_T.mute, marginTop: 4 }}>
-            Crea, edita, programa y publica artículos.
+            Create, edit, schedule and publish articles.
           </div>
         </Link>
         <Link
@@ -101,9 +101,9 @@ export default async function AdminDashboardPage() {
             marginTop: 16,
           }}
         >
-          <strong>Añadir deals anunciados →</strong>
+          <strong>Add announced deals →</strong>
           <div style={{ color: WPP_T.mute, marginTop: 4 }}>
-            Sube el logo de un cliente cuando se anuncie un nuevo deal.
+            Upload a client&rsquo;s logo whenever a new deal is announced.
           </div>
         </Link>
       </main>

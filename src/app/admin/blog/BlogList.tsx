@@ -7,9 +7,9 @@ import { WPP_T, WPP_FONTS } from "@/lib/wpp/tokens";
 import type { PostSummary } from "@/lib/wpp/blog-types";
 
 const STATUS_LABEL: Record<string, string> = {
-  draft: "Borrador",
-  scheduled: "Programado",
-  published: "Publicado",
+  draft: "Draft",
+  scheduled: "Scheduled",
+  published: "Published",
 };
 
 const STATUS_COLOR: Record<string, { bg: string; fg: string }> = {
@@ -24,19 +24,19 @@ export default function BlogList({ posts }: { posts: PostSummary[] }) {
   const [error, setError] = useState<string | null>(null);
 
   async function handleDelete(id: number, title: string) {
-    if (!window.confirm(`¿Eliminar el artículo "${title}"? Esta acción no se puede deshacer.`)) return;
+    if (!window.confirm(`Delete the article "${title}"? This action cannot be undone.`)) return;
     setDeletingId(id);
     setError(null);
     try {
       const res = await fetch(`/api/admin/blog/posts/${id}`, { method: "DELETE" });
       const data = await res.json();
       if (!res.ok) {
-        setError(data.error || "No se ha podido eliminar el artículo.");
+        setError(data.error || "Couldn't delete the article.");
         return;
       }
       router.refresh();
     } catch {
-      setError("No se ha podido eliminar el artículo.");
+      setError("Couldn't delete the article.");
     } finally {
       setDeletingId(null);
     }
@@ -55,7 +55,7 @@ export default function BlogList({ posts }: { posts: PostSummary[] }) {
           fontSize: 14,
         }}
       >
-        Todavía no hay artículos. Crea el primero con &ldquo;Nuevo artículo&rdquo;.
+        There are no articles yet. Create your first one with &ldquo;New article&rdquo;.
       </div>
     );
   }
@@ -121,10 +121,10 @@ export default function BlogList({ posts }: { posts: PostSummary[] }) {
                   {post.categoryName ? `${post.categoryName} · ` : ""}
                   {post.authorName ? `${post.authorName} · ` : ""}
                   {post.status === "scheduled" && post.publishAt
-                    ? `Programado para ${new Date(post.publishAt).toLocaleString("es-ES")}`
+                    ? `Scheduled for ${new Date(post.publishAt).toLocaleString("en-GB")}`
                     : post.status === "published" && post.publishAt
-                    ? `Publicado el ${new Date(post.publishAt).toLocaleDateString("es-ES")}`
-                    : `Actualizado ${new Date(post.updatedAt).toLocaleDateString("es-ES")}`}
+                    ? `Published on ${new Date(post.publishAt).toLocaleDateString("en-GB")}`
+                    : `Updated ${new Date(post.updatedAt).toLocaleDateString("en-GB")}`}
                 </div>
               </div>
               <div style={{ display: "flex", gap: 8, flexShrink: 0 }}>
@@ -141,7 +141,7 @@ export default function BlogList({ posts }: { posts: PostSummary[] }) {
                     fontFamily: WPP_FONTS.sans,
                   }}
                 >
-                  Editar
+                  Edit
                 </Link>
                 <button
                   type="button"
@@ -159,7 +159,7 @@ export default function BlogList({ posts }: { posts: PostSummary[] }) {
                     fontFamily: WPP_FONTS.sans,
                   }}
                 >
-                  {deletingId === post.id ? "Eliminando…" : "Eliminar"}
+                  {deletingId === post.id ? "Deleting…" : "Delete"}
                 </button>
               </div>
             </div>

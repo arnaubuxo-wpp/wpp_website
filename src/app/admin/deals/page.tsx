@@ -24,19 +24,18 @@ export default async function AdminDealsPage() {
           White Peak Partners — Admin
         </div>
         <Link href="/admin" style={{ fontSize: 13, color: WPP_T.ink }}>
-          ← Volver
+          ← Back
         </Link>
       </header>
 
       <main style={{ padding: 32, maxWidth: 860 }}>
         <h1 style={{ fontSize: 22, fontWeight: 600, color: WPP_T.ink, margin: "0 0 4px" }}>
-          Deals anunciados
+          Announced deals
         </h1>
         <p style={{ fontSize: 14, color: WPP_T.mute, margin: "0 0 20px" }}>
-          Añade el logo de un cliente cada vez que se anuncie un nuevo deal.
-          Aparecen en la portada, en la sección &ldquo;Selected mandates&rdquo;,
-          justo antes de los deals existentes. Los cambios se publican al
-          instante.
+          Add a client&rsquo;s logo whenever a new deal is announced. It shows up
+          on the homepage, in the &ldquo;Selected mandates&rdquo; section,
+          right before the existing deals. Changes go live instantly.
         </p>
 
         <DealsManager initialDeals={deals} />

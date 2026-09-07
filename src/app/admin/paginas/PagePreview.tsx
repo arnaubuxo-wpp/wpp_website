@@ -84,7 +84,7 @@ export default function PagePreview({
         }}
       >
         <span style={{ fontSize: 12, fontWeight: 600, color: WPP_T.ink, fontFamily: WPP_FONTS.sans }}>
-          Vista previa en vivo — {label}
+          Live preview — {label}
         </span>
         <div style={{ display: "flex", gap: 8 }}>
           <button
@@ -102,7 +102,7 @@ export default function PagePreview({
               fontFamily: WPP_FONTS.sans,
             }}
           >
-            Actualizar
+            Refresh
           </button>
           <a
             href={path}
@@ -120,7 +120,7 @@ export default function PagePreview({
               fontFamily: WPP_FONTS.sans,
             }}
           >
-            Abrir en pestaña nueva ↗
+            Open in new tab ↗
           </a>
         </div>
       </div>
@@ -129,7 +129,7 @@ export default function PagePreview({
           key={reloadKey}
           ref={iframeRef}
           src={path}
-          title={`Vista previa de ${label}`}
+          title={`Preview of ${label}`}
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: "none" }}
         />
       </div>
@@ -142,12 +142,11 @@ export default function PagePreview({
           fontFamily: WPP_FONTS.sans,
         }}
       >
-        Esto es la página real. Al hacer clic o pasar el ratón por un campo del
-        formulario, aquí se resalta con un borde azul exactamente qué parte de
-        la web edita ese campo. Si el panel es estrecho puede verse en formato
-        móvil — usa &quot;Abrir en pestaña nueva&quot; para verla a tamaño
-        completo. Después de guardar, pulsa &quot;Actualizar&quot; para ver el
-        cambio aquí.
+        This is the real page. Click into a field on the form and this panel
+        highlights, with a blue outline, exactly which part of the site that
+        field controls. If the panel looks narrow it may be showing the
+        mobile layout — use &quot;Open in new tab&quot; to see it at full
+        size. After saving, click &quot;Refresh&quot; to see the change here.
       </div>
     </div>
   );

@@ -86,7 +86,7 @@ export default function PaginasForm({
           color: WPP_T.mute,
         }}
       >
-        Todavía no hay campos editables para {pageDef.label}.
+        There are no editable fields for {pageDef.label} yet.
       </div>
     );
   }
@@ -187,7 +187,7 @@ export default function PaginasForm({
                     fontFamily: WPP_FONTS.sans,
                   }}
                 >
-                  {uploadingKey === field.key ? "Subiendo…" : "Subir imagen"}
+                  {uploadingKey === field.key ? "Uploading…" : "Upload image"}
                 </button>
               </div>
               <input
@@ -217,7 +217,7 @@ export default function PaginasForm({
           )}
           {!values[field.key] && (
             <span style={{ display: "block", fontSize: 12, color: WPP_T.mute, marginTop: 4 }}>
-              Vacío = usar el texto original de la web.
+              Empty = use the site&rsquo;s original text.
             </span>
           )}
         </label>
@@ -249,7 +249,7 @@ export default function PaginasForm({
             padding: "8px 12px",
           }}
         >
-          Guardado. Los cambios ya están visibles en la web.
+          Saved. The changes are now live on the site.
         </div>
       )}
 
@@ -270,7 +270,7 @@ export default function PaginasForm({
           fontFamily: WPP_FONTS.sans,
         }}
       >
-        {saving ? "Guardando…" : "Guardar cambios"}
+        {saving ? "Saving…" : "Save changes"}
       </button>
     </form>
   );

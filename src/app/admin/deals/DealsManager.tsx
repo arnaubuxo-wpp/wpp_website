@@ -88,7 +88,7 @@ export default function DealsManager({ initialDeals }: { initialDeals: Announced
   async function handleAdd(e: React.FormEvent) {
     e.preventDefault();
     if (!name.trim()) {
-      setError("El nombre de la empresa es obligatorio.");
+      setError("The company name is required.");
       return;
     }
     const deal = makeDeal({ name, summary, detail, sector, logoUrl });
@@ -103,7 +103,7 @@ export default function DealsManager({ initialDeals }: { initialDeals: Announced
   }
 
   async function handleDelete(id: string) {
-    if (!window.confirm("¿Eliminar este deal? Esta acción no se puede deshacer.")) return;
+    if (!window.confirm("Delete this deal? This action cannot be undone.")) return;
     await persist(deals.filter((d) => d.id !== id));
   }
 
@@ -130,18 +130,18 @@ export default function DealsManager({ initialDeals }: { initialDeals: Announced
         }}
       >
         <h2 style={{ fontSize: 15, fontWeight: 600, color: WPP_T.ink, margin: 0 }}>
-          Añadir nuevo deal
+          Add a new deal
         </h2>
 
         <label style={{ display: "block" }}>
           <span style={{ display: "block", fontSize: 13, fontWeight: 600, color: WPP_T.ink, marginBottom: 4 }}>
-            Nombre de la empresa
+            Company name
           </span>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="p. ej. Acme Robotics"
+            placeholder="e.g. Acme Robotics"
             style={inputStyle}
           />
         </label>
@@ -173,7 +173,7 @@ export default function DealsManager({ initialDeals }: { initialDeals: Announced
               disabled={uploading}
               style={{ ...buttonStyle, cursor: uploading ? "default" : "pointer" }}
             >
-              {uploading ? "Subiendo…" : logoUrl ? "Cambiar logo" : "Subir logo"}
+              {uploading ? "Uploading…" : logoUrl ? "Change logo" : "Upload logo"}
             </button>
             {logoUrl && (
               <button
@@ -181,7 +181,7 @@ export default function DealsManager({ initialDeals }: { initialDeals: Announced
                 onClick={() => setLogoUrl(null)}
                 style={{ ...buttonStyle, color: "#b42318", borderColor: "#fecdca" }}
               >
-                Quitar
+                Remove
               </button>
             )}
           </div>
@@ -201,25 +201,25 @@ export default function DealsManager({ initialDeals }: { initialDeals: Announced
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
           <label style={{ display: "block" }}>
             <span style={{ display: "block", fontSize: 13, fontWeight: 600, color: WPP_T.ink, marginBottom: 4 }}>
-              Tipo de operación
+              Deal type
             </span>
             <input
               type="text"
               value={summary}
               onChange={(e) => setSummary(e.target.value)}
-              placeholder="p. ej. Fundraise, Sale to Acme Corp"
+              placeholder="e.g. Fundraise, Sale to Acme Corp"
               style={inputStyle}
             />
           </label>
           <label style={{ display: "block" }}>
             <span style={{ display: "block", fontSize: 13, fontWeight: 600, color: WPP_T.ink, marginBottom: 4 }}>
-              Importe
+              Amount
             </span>
             <input
               type="text"
               value={detail}
               onChange={(e) => setDetail(e.target.value)}
-              placeholder="p. ej. $10m, Confidential"
+              placeholder="e.g. $10m, Confidential"
               style={inputStyle}
             />
           </label>
@@ -227,13 +227,13 @@ export default function DealsManager({ initialDeals }: { initialDeals: Announced
 
         <label style={{ display: "block" }}>
           <span style={{ display: "block", fontSize: 13, fontWeight: 600, color: WPP_T.ink, marginBottom: 4 }}>
-            Sector (opcional, solo para referencia interna)
+            Sector (optional, for internal reference only)
           </span>
           <input
             type="text"
             value={sector}
             onChange={(e) => setSector(e.target.value)}
-            placeholder="p. ej. Fintech · B2B SaaS"
+            placeholder="e.g. Fintech · B2B SaaS"
             style={inputStyle}
           />
         </label>
@@ -263,7 +263,7 @@ export default function DealsManager({ initialDeals }: { initialDeals: Announced
               padding: "8px 12px",
             }}
           >
-            Guardado. Ya está visible en la web.
+            Saved. It&rsquo;s now live on the site.
           </div>
         )}
 
@@ -284,13 +284,13 @@ export default function DealsManager({ initialDeals }: { initialDeals: Announced
             fontFamily: WPP_FONTS.sans,
           }}
         >
-          {saving ? "Guardando…" : "Añadir deal"}
+          {saving ? "Saving…" : "Add deal"}
         </button>
       </form>
 
       <div>
         <h2 style={{ fontSize: 15, fontWeight: 600, color: WPP_T.ink, margin: "0 0 12px" }}>
-          Deals añadidos ({deals.length})
+          Added deals ({deals.length})
         </h2>
         {deals.length === 0 ? (
           <div
@@ -304,8 +304,8 @@ export default function DealsManager({ initialDeals }: { initialDeals: Announced
               fontSize: 14,
             }}
           >
-            Todavía no se ha añadido ningún deal. Los deals originales de la
-            web siguen mostrándose normalmente.
+            No deals have been added yet. The site&rsquo;s original deals keep
+            showing as normal.
           </div>
         ) : (
           <div
@@ -349,13 +349,13 @@ export default function DealsManager({ initialDeals }: { initialDeals: Announced
                       style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }}
                     />
                   ) : (
-                    <span style={{ fontSize: 10, color: WPP_T.mute }}>Sin logo</span>
+                    <span style={{ fontSize: 10, color: WPP_T.mute }}>No logo</span>
                   )}
                 </div>
                 <div style={{ minWidth: 0, flex: 1 }}>
                   <div style={{ fontSize: 14, fontWeight: 600, color: WPP_T.ink }}>{deal.name}</div>
                   <div style={{ fontSize: 12, color: WPP_T.mute, marginTop: 2 }}>
-                    {[deal.summary, deal.detail, deal.sector].filter(Boolean).join(" · ") || "Sin detalles"}
+                    {[deal.summary, deal.detail, deal.sector].filter(Boolean).join(" · ") || "No details"}
                   </div>
                 </div>
                 <div style={{ display: "flex", gap: 6, flexShrink: 0 }}>
@@ -364,7 +364,7 @@ export default function DealsManager({ initialDeals }: { initialDeals: Announced
                     onClick={() => handleMove(i, -1)}
                     disabled={i === 0 || saving}
                     style={{ ...buttonStyle, opacity: i === 0 ? 0.4 : 1 }}
-                    aria-label="Mover arriba"
+                    aria-label="Move up"
                   >
                     ↑
                   </button>
@@ -373,7 +373,7 @@ export default function DealsManager({ initialDeals }: { initialDeals: Announced
                     onClick={() => handleMove(i, 1)}
                     disabled={i === deals.length - 1 || saving}
                     style={{ ...buttonStyle, opacity: i === deals.length - 1 ? 0.4 : 1 }}
-                    aria-label="Mover abajo"
+                    aria-label="Move down"
                   >
                     ↓
                   </button>
@@ -383,7 +383,7 @@ export default function DealsManager({ initialDeals }: { initialDeals: Announced
                     disabled={saving}
                     style={{ ...buttonStyle, color: "#b42318", borderColor: "#fecdca" }}
                   >
-                    Eliminar
+                    Delete
                   </button>
                 </div>
               </div>
