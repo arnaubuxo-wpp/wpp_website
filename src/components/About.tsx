@@ -188,7 +188,7 @@ export default function About() {
       color: T.blue,
       fontWeight: 500
     }
-  }, "BNP Paribas"), ", working on transactions where the diligence was rigorous, the buyers were the right buyers, and the closing rate was high. Then they went and ran tech companies — as CFOs, as investors, as operators inside the businesses themselves."), /*#__PURE__*/React.createElement("p", {
+  }, "BNP Paribas"), ", working on transactions in the hundreds of millions. They then set out to build a firm that could bring that experience to the small- and mid-market — with closer collaboration with founders and investors than a bulge-bracket process allows."), /*#__PURE__*/React.createElement("p", {
     style: {
       margin: '0 0 22px'
     }
