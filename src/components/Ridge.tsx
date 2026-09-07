@@ -99,21 +99,31 @@ function Ridge({
   // The article list is inlined into Website.html as <script id="wpp-news-data">
   // so it's present in the source HTML for SEO (search crawlers + link previews).
   // We prefer that inline data; fall back to fetching news.json for dev/standalone use.
-  const [newsItems, setNewsItems] = React.useState(() => {
+  //
+  // IMPORTANT: this used to read document.getElementById('wpp-news-data') inside the
+  // useState() lazy initializer, which runs during render. On the server that throws
+  // (no `document`) and is swallowed, so the server-rendered HTML always shows an empty
+  // list — but on the client, the very same initializer runs again during hydration,
+  // where the script tag IS present, so it resolves to the real 3 articles immediately.
+  // That mismatch between the server-rendered tree and the client's first render is
+  // exactly what React's hydration diff catches (minified error #418): it throws,
+  // throws out the mismatched subtree, and re-renders the page from scratch — the
+  // visible flash/jank on load. Reading the DOM has to happen after mount instead, in
+  // an effect, so the first client render matches the server's.
+  const [newsItems, setNewsItems] = React.useState([]);
+  React.useEffect(() => {
+    let alive = true;
     try {
       const el = document.getElementById('wpp-news-data');
       if (el) {
         const data = JSON.parse(el.textContent || '[]');
-        if (Array.isArray(data)) {
-          return [...data].sort((a, b) => (b.date || '').localeCompare(a.date || '')).slice(0, 3);
+        if (Array.isArray(data) && data.length > 0) {
+          const sorted = [...data].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+          setNewsItems(sorted.slice(0, 3));
+          return;
         }
       }
     } catch (_) {}
-    return [];
-  });
-  React.useEffect(() => {
-    if (newsItems.length > 0) return; // already populated from inline data
-    let alive = true;
     fetch('directions/news.json', {
       cache: 'no-store'
     }).then(r => r.ok ? r.json() : []).then(data => {
