@@ -540,14 +540,19 @@ export default function What() {
       fontWeight: 500,
       maxWidth: 760
     }
-  }, "What the ", /*#__PURE__*/React.createElement("span", {
+  }, /*#__PURE__*/React.createElement("span", {
+    "data-override-key": "whatTestimonialsHeadingPre"
+  }, WPP_t('whatTestimonialsHeadingPre', 'What the ')), /*#__PURE__*/React.createElement("span", {
+    "data-override-key": "whatTestimonialsHeadingEmphasis",
     style: {
       fontFamily: F.serif,
       fontStyle: 'italic',
       fontWeight: 400,
       color: '#92a1d3'
     }
-  }, "founders"), " we worked with said", /*#__PURE__*/React.createElement("span", {
+  }, WPP_t('whatTestimonialsHeadingEmphasis', 'founders')), /*#__PURE__*/React.createElement("span", {
+    "data-override-key": "whatTestimonialsHeadingPost"
+  }, WPP_t('whatTestimonialsHeadingPost', ' we worked with said')), /*#__PURE__*/React.createElement("span", {
     style: {
       color: T.blue
     }
@@ -602,7 +607,9 @@ export default function What() {
       margin: 0,
       fontWeight: 500
     }
-  }, "Tech-driven companies", /*#__PURE__*/React.createElement("span", {
+  }, /*#__PURE__*/React.createElement("span", {
+    "data-override-key": "whatSectorsHeading"
+  }, WPP_t('whatSectorsHeading', 'Tech-driven companies')), /*#__PURE__*/React.createElement("span", {
     style: {
       color: T.blue
     }

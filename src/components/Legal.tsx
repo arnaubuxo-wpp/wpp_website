@@ -8,6 +8,7 @@ import { WPP_t } from '@/lib/wpp/sanity-stub';
 
 function LegalShell({
   title,
+  titleKey,
   updated,
   children
 }) {
@@ -25,6 +26,7 @@ function LegalShell({
       borderBottom: `1px solid ${T.hair}`
     }
   }, /*#__PURE__*/React.createElement("h1", {
+    "data-override-key": titleKey,
     style: {
       fontSize: 'clamp(36px, 6vw, 72px)',
       letterSpacing: -1.8,
@@ -84,7 +86,8 @@ export function Privacy() {
     fontWeight: 600
   };
   return /*#__PURE__*/React.createElement(LegalShell, {
-    title: "Privacy policy",
+    title: WPP_t('privacyTitle', 'Privacy policy'),
+    titleKey: "privacyTitle",
     updated: /*#__PURE__*/React.createElement("span", {
       "data-override-key": "privacyUpdated"
     }, WPP_t('privacyUpdated', 'July 2026'))
@@ -117,7 +120,8 @@ export function Terms() {
     fontWeight: 600
   };
   return /*#__PURE__*/React.createElement(LegalShell, {
-    title: "Terms of use & legal notice",
+    title: WPP_t('termsTitle', 'Terms of use & legal notice'),
+    titleKey: "termsTitle",
     updated: /*#__PURE__*/React.createElement("span", {
       "data-override-key": "termsUpdated"
     }, WPP_t('termsUpdated', 'July 2026'))

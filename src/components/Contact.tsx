@@ -215,14 +215,17 @@ export default function Contact() {
       fontWeight: 500,
       textWrap: 'balance'
     }
-  }, "Tell us where your", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", {
+  }, /*#__PURE__*/React.createElement("span", {
+    "data-override-key": "contactHeroHeadingLine1"
+  }, WPP_t('contactHeroHeadingLine1', "Tell us where your")), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", {
+    "data-override-key": "contactHeroHeadingItalic",
     style: {
       fontFamily: F.serif,
       fontStyle: 'italic',
       fontWeight: 400,
       color: '#92a1d3'
     }
-  }, "company is going.")), /*#__PURE__*/React.createElement("div", {
+  }, WPP_t('contactHeroHeadingItalic', "company is going."))), /*#__PURE__*/React.createElement("div", {
     "data-override-key": "contactIntro",
     style: {
       marginTop: 32,
@@ -246,11 +249,14 @@ export default function Contact() {
       margin: '0 0 20px',
       fontWeight: 500
     }
-  }, "Start the conversation", /*#__PURE__*/React.createElement("span", {
+  }, /*#__PURE__*/React.createElement("span", {
+    "data-override-key": "contactFormHeading"
+  }, WPP_t('contactFormHeading', "Start the conversation")), /*#__PURE__*/React.createElement("span", {
     style: {
       color: T.blue
     }
   }, ".")), /*#__PURE__*/React.createElement("p", {
+    "data-override-key": "contactFormIntro",
     style: {
       fontSize: 18,
       lineHeight: 1.6,
@@ -258,7 +264,7 @@ export default function Contact() {
       margin: '0 0 36px',
       maxWidth: 460
     }
-  }, "Write to us with a few lines about your company, the stage you're at, and what you're hoping to achieve."), /*#__PURE__*/React.createElement("a", {
+  }, WPP_t('contactFormIntro', "Write to us with a few lines about your company, the stage you're at, and what you're hoping to achieve.")), /*#__PURE__*/React.createElement("a", {
     href: MAILTO,
     style: {
       display: 'inline-flex',
@@ -275,6 +281,7 @@ export default function Contact() {
       boxShadow: '0 8px 24px rgba(29,78,216,0.35)'
     }
   }, CONTACT_EMAIL, " →"), /*#__PURE__*/React.createElement("div", {
+    "data-override-key": "contactConfidentialNote",
     style: {
       marginTop: 20,
       fontSize: 13,
@@ -282,7 +289,7 @@ export default function Contact() {
       lineHeight: 1.55,
       maxWidth: 460
     }
-  }, "Anything you share is treated as confidential."))), /*#__PURE__*/React.createElement("div", {
+  }, WPP_t('contactConfidentialNote', "Anything you share is treated as confidential.")))), /*#__PURE__*/React.createElement("div", {
     style: {
       padding: `80px ${G}`,
       borderTop: `1px solid ${T.hair}`
@@ -371,11 +378,12 @@ export default function Contact() {
       textTransform: 'uppercase'
     }
   }), /*#__PURE__*/React.createElement("div", {
+    "data-override-key": "contactConfidenceNote",
     style: {
       fontSize: 18,
       fontWeight: 500,
       marginTop: 12,
       lineHeight: 1.45
     }
-  }, "Every conversation is held in confidence. We can countersign an NDA before the first meeting."))));
+  }, WPP_t('contactConfidenceNote', "Every conversation is held in confidence. We can countersign an NDA before the first meeting.")))));
 }

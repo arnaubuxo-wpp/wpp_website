@@ -7,7 +7,7 @@ import { WPP_T, WPP_FONTS, WPP_GUTTER } from '@/lib/wpp/tokens';
 import { WPP_useIsNarrow, WPP_useMedia } from '@/lib/wpp/hooks';
 import { Tag as WPP_Tag } from '@/lib/wpp/shared';
 import { __R } from '@/lib/wpp/assets';
-import { WPP_t } from '@/lib/wpp/sanity-stub';
+import { WPP_t, WPP_img } from '@/lib/wpp/sanity-stub';
 
 export default function About() {
   const T = WPP_T,
@@ -118,7 +118,9 @@ export default function About() {
       fontWeight: 400,
       color: '#92a1d3'
     }
-  }, "advisor"), ","), /*#__PURE__*/React.createElement("br", null), "by design", /*#__PURE__*/React.createElement("span", {
+  }, "advisor"), ","), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", {
+    "data-override-key": "aboutHeroLine2"
+  }, WPP_t('aboutHeroLine2', "by design")), /*#__PURE__*/React.createElement("span", {
     style: {
       color: T.blue
     }
@@ -158,13 +160,14 @@ export default function About() {
       fontFamily: F.serif
     }
   }, /*#__PURE__*/React.createElement("p", {
+    "data-override-key": "aboutSectionIntro",
     style: {
       margin: '0 0 22px',
       fontSize: 'clamp(20px, 2.6vw, 26px)',
       lineHeight: 1.4,
       color: T.ink
     }
-  }, "Most M&A advisors are organised around the deal. We organise around the company."), /*#__PURE__*/React.createElement("p", {
+  }, WPP_t('aboutSectionIntro', "Most M&A advisors are organised around the deal. We organise around the company.")), /*#__PURE__*/React.createElement("p", {
     style: {
       margin: '0 0 22px'
     }
@@ -188,19 +191,24 @@ export default function About() {
       color: T.blue,
       fontWeight: 500
     }
-  }, "BNP Paribas"), ", working on transactions in the hundreds of millions. They then set out to build a firm that could bring that experience to the small- and mid-market — with closer collaboration with founders and investors than a bulge-bracket process allows."), /*#__PURE__*/React.createElement("p", {
+  }, "BNP Paribas"), /*#__PURE__*/React.createElement("span", {
+    "data-override-key": "aboutFirmOriginContinued"
+  }, WPP_t('aboutFirmOriginContinued', ", working on transactions in the hundreds of millions. They then set out to build a firm that could bring that experience to the small- and mid-market — with closer collaboration with founders and investors than a bulge-bracket process allows."))), /*#__PURE__*/React.createElement("p", {
     style: {
       margin: '0 0 22px'
     }
-  }, "What they learned in bulge-bracket M&A is that the technical excellence of a banker is necessary but not sufficient. The real difference is whether the advisor understands the business well enough to ", /*#__PURE__*/React.createElement("em", {
+  }, /*#__PURE__*/React.createElement("span", {
+    "data-override-key": "aboutDifferentiatorStatement"
+  }, WPP_t('aboutDifferentiatorStatement', "What they learned in bulge-bracket M&A is that the technical excellence of a banker is necessary but not sufficient. The real difference is whether the advisor understands the business well enough to ")), /*#__PURE__*/React.createElement("em", {
     style: {
       color: T.blue
     }
   }, "shape it"), " for the moment, not just to ", /*#__PURE__*/React.createElement("em", null, "price it"), "."), /*#__PURE__*/React.createElement("p", {
+    "data-override-key": "aboutClosingStatement",
     style: {
       margin: '0 0 22px'
     }
-  }, "That is the firm. Fewer mandates than we could take, more time per company than is profitable on paper, and an alignment structure that means we win only when the deal is succesful.")), /*#__PURE__*/React.createElement("div", {
+  }, WPP_t('aboutClosingStatement', "That is the firm. Fewer mandates than we could take, more time per company than is profitable on paper, and an alignment structure that means we win only when the deal is succesful."))), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       borderRadius: 4,
@@ -208,7 +216,8 @@ export default function About() {
       minHeight: isNarrow ? 300 : 0
     }
   }, /*#__PURE__*/React.createElement("img", {
-    src: __R('assets/hero-mountain-poster.jpg'),
+    "data-override-key": "aboutHeroImage",
+    src: WPP_img('aboutHeroImage', __R('assets/hero-mountain-poster.jpg')),
     alt: "The alpine landscape behind the White Peak Partners name",
     style: {
       width: '100%',
@@ -357,6 +366,7 @@ function MandateTimelineSection({
       transition: `width .9s ${ease} 250ms`
     }
   }))), /*#__PURE__*/React.createElement("div", {
+    "data-override-key": "aboutTimelineIntro",
     style: {
       maxWidth: 720,
       fontSize: 17,
@@ -368,7 +378,7 @@ function MandateTimelineSection({
       transform: inView ? 'translateY(0)' : 'translateY(10px)',
       transition: `opacity .8s ${ease} 120ms, transform .8s ${ease} 120ms`
     }
-  }, "Our process is built on a holistic view of your business and its competitive context. Tailored to what each mandate actually needs. From boardroom immersion through to signing and the months that follow, every phase is partner-led."), /*#__PURE__*/React.createElement("div", {
+  }, WPP_t('aboutTimelineIntro', "Our process is built on a holistic view of your business and its competitive context. Tailored to what each mandate actually needs. From boardroom immersion through to signing and the months that follow, every phase is partner-led.")), /*#__PURE__*/React.createElement("div", {
     style: {
       position: 'relative',
       marginBottom: 40,

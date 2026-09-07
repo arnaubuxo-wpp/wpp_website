@@ -455,6 +455,7 @@ function Ridge({
     }
   }, /*#__PURE__*/React.createElement("a", {
     href: WPP_LINK('contact'),
+    "data-override-key": "homeHeroCta1",
     onClick: e => {
       e.preventDefault();
       nav('contact');
@@ -470,8 +471,9 @@ function Ridge({
       boxShadow: '0 8px 24px rgba(29,78,216,0.4)',
       whiteSpace: 'nowrap'
     }
-  }, "Get in touch →"), /*#__PURE__*/React.createElement("a", {
+  }, WPP_t('homeHeroCta1', "Get in touch →")), /*#__PURE__*/React.createElement("a", {
     href: WPP_LINK('what'),
+    "data-override-key": "homeHeroCta2",
     onClick: e => {
       e.preventDefault();
       nav('what');
@@ -487,7 +489,7 @@ function Ridge({
       textDecoration: 'none',
       whiteSpace: 'nowrap'
     }
-  }, "What we do")), /*#__PURE__*/React.createElement("div", {
+  }, WPP_t('homeHeroCta2', "What we do"))), /*#__PURE__*/React.createElement("div", {
     style: {
       height: 40
     }
@@ -528,18 +530,20 @@ function Ridge({
       maxWidth: 1080
     }
   }, /*#__PURE__*/React.createElement("div", {
+    "data-override-key": "homeIntroPara1",
     style: {
       fontSize: 17,
       lineHeight: 1.6,
       color: T.inkSoft
     }
-  }, "Based in London and Barcelona, we work exclusively with technology-driven companies — helping European tech businesses unlock growth and generate value for their founders, investors and executives."), /*#__PURE__*/React.createElement("div", {
+  }, WPP_t('homeIntroPara1', "Based in London and Barcelona, we work exclusively with technology-driven companies — helping European tech businesses unlock growth and generate value for their founders, investors and executives.")), /*#__PURE__*/React.createElement("div", {
+    "data-override-key": "homeIntroPara2",
     style: {
       fontSize: 17,
       lineHeight: 1.6,
       color: T.inkSoft
     }
-  }, "We are former senior operators, engineers, VC investors and bulge-bracket bankers. The client list is small, senior partners stay on every mandate, and we treat every engagement as if our own company depended on it.")))), /*#__PURE__*/React.createElement(StatsBlock, null), /*#__PURE__*/React.createElement("div", {
+  }, WPP_t('homeIntroPara2', "We are former senior operators, engineers, VC investors and bulge-bracket bankers. The client list is small, senior partners stay on every mandate, and we treat every engagement as if our own company depended on it."))))), /*#__PURE__*/React.createElement(StatsBlock, null), /*#__PURE__*/React.createElement("div", {
     style: {
       padding: `60px ${G} 100px`
     }
@@ -548,6 +552,7 @@ function Ridge({
       marginBottom: 64
     }
   }, /*#__PURE__*/React.createElement("h2", {
+    "data-override-key": "homeServicesHeading",
     style: {
       fontSize: 'clamp(28px, 4vw, 44px)',
       letterSpacing: -1,
@@ -556,7 +561,7 @@ function Ridge({
       fontWeight: 500,
       maxWidth: 900
     }
-  }, "Strategic and corporate finance advisory — usually leading to a transaction", /*#__PURE__*/React.createElement("span", {
+  }, WPP_t('homeServicesHeading', "Strategic and corporate finance advisory — usually leading to a transaction"), /*#__PURE__*/React.createElement("span", {
     style: {
       color: T.blue
     }
@@ -629,8 +634,9 @@ function Ridge({
       lineHeight: 1.25,
       color: '#fff',
       textShadow: '0 2px 24px rgba(0,0,0,0.5)'
-    }
-  }, "\"We work with a small number of mandates at a time so every client receives a premium, partner-led service.\"")))), /*#__PURE__*/React.createElement(ClientWall, {
+    },
+    "data-override-key": "homeBandQuote"
+  }, WPP_t('homeBandQuote', "\"We work with a small number of mandates at a time so every client receives a premium, partner-led service.\""))))), /*#__PURE__*/React.createElement(ClientWall, {
     T: T,
     mono: mono,
     serif: serif,
@@ -653,6 +659,7 @@ function Ridge({
       marginBottom: 48
     }
   }, /*#__PURE__*/React.createElement("h2", {
+    "data-override-key": "homeNewsHeading",
     style: {
       fontSize: 'clamp(28px, 4vw, 44px)',
       letterSpacing: -1,
@@ -660,7 +667,7 @@ function Ridge({
       fontWeight: 500,
       maxWidth: 800
     }
-  }, "Hand-picked reading", /*#__PURE__*/React.createElement("span", {
+  }, WPP_t('homeNewsHeading', "Hand-picked reading"), /*#__PURE__*/React.createElement("span", {
     style: {
       color: T.blue
     }
@@ -777,6 +784,7 @@ function Ridge({
       alignItems: 'start'
     }
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h2", {
+    "data-override-key": "homeContactHeading",
     style: {
       fontSize: 'clamp(34px, 5.4vw, 68px)',
       letterSpacing: -1.6,
@@ -785,11 +793,12 @@ function Ridge({
       fontWeight: 500,
       maxWidth: 520
     }
-  }, "Tell us where your company is going", /*#__PURE__*/React.createElement("span", {
+  }, WPP_t('homeContactHeading', "Tell us where your company is going"), /*#__PURE__*/React.createElement("span", {
     style: {
       color: T.blue
     }
   }, ".")), /*#__PURE__*/React.createElement("div", {
+    "data-override-key": "homeContactIntro",
     style: {
       fontSize: 16,
       lineHeight: 1.6,
@@ -797,7 +806,8 @@ function Ridge({
       marginTop: 24,
       maxWidth: 460
     }
-  }, "First conversation is confidential and obligation-free. We come prepared.")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+  }, WPP_t('homeContactIntro', "First conversation is confidential and obligation-free. We come prepared."))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    "data-override-key": "homeContactLabel",
     style: {
       fontFamily: mono,
       fontSize: 11,
@@ -806,14 +816,15 @@ function Ridge({
       textTransform: 'uppercase',
       marginBottom: 18
     }
-  }, "Contact"), /*#__PURE__*/React.createElement("div", {
+  }, WPP_t('homeContactLabel', "Contact")), /*#__PURE__*/React.createElement("div", {
+    "data-override-key": "homeContactEmail",
     style: {
       fontSize: 14,
       lineHeight: 1.7,
       opacity: 0.85,
       marginBottom: 18
     }
-  }, "info@whitepeakpartners.com"), /*#__PURE__*/React.createElement("a", {
+  }, WPP_t('homeContactEmail', "info@whitepeakpartners.com")), /*#__PURE__*/React.createElement("a", {
     href: "https://www.linkedin.com/company/white-peak-partners",
     target: "_blank",
     rel: "noreferrer",
@@ -838,7 +849,10 @@ function Ridge({
     "aria-hidden": "true"
   }, /*#__PURE__*/React.createElement("path", {
     d: "M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"
-  })), /*#__PURE__*/React.createElement("span", null, "LinkedIn"))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+  })), /*#__PURE__*/React.createElement("span", {
+    "data-override-key": "homeLinkedinLabel"
+  }, WPP_t('homeLinkedinLabel', "LinkedIn")))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    "data-override-key": "homeOfficesLabel",
     style: {
       fontFamily: mono,
       fontSize: 11,
@@ -847,7 +861,7 @@ function Ridge({
       textTransform: 'uppercase',
       marginBottom: 18
     }
-  }, "Offices"), /*#__PURE__*/React.createElement("div", {
+  }, WPP_t('homeOfficesLabel', "Offices")), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 14,
       lineHeight: 1.7,
@@ -858,6 +872,7 @@ function Ridge({
     href: "https://whitepeakpartners.us13.list-manage.com/subscribe?u=9bad57db761ffe74716f06ed2&id=add5969a23",
     target: "_blank",
     rel: "noreferrer",
+    "data-override-key": "homeNewsletterCta",
     style: {
       display: 'inline-flex',
       alignItems: 'center',
@@ -870,7 +885,7 @@ function Ridge({
       fontWeight: 600,
       textDecoration: 'none'
     }
-  }, "Subscribe to our newsletter")))));
+  }, WPP_t('homeNewsletterCta', "Subscribe to our newsletter"))))));
 }
 
 // ---- Home "What we do" card ----
@@ -1116,6 +1131,7 @@ function ClientWall({
       position: 'relative'
     }
   }, /*#__PURE__*/React.createElement("h2", {
+    "data-override-key": "homeClientsHeading",
     style: {
       fontSize: 'clamp(28px, 4vw, 44px)',
       letterSpacing: -1.2,
@@ -1124,7 +1140,7 @@ function ClientWall({
       lineHeight: 1,
       ...stagger(1)
     }
-  }, "Selected companies we've worked with", /*#__PURE__*/React.createElement("span", {
+  }, WPP_t('homeClientsHeading', "Selected companies we've worked with"), /*#__PURE__*/React.createElement("span", {
     style: {
       fontFamily: serif,
       fontStyle: 'italic',
@@ -1302,6 +1318,7 @@ function PrinciplesAndMethod({
       alignSelf: 'start'
     }
   }, /*#__PURE__*/React.createElement("h2", {
+    "data-override-key": "homeValuesHeading",
     style: {
       fontSize: 'clamp(32px, 4.6vw, 56px)',
       letterSpacing: -1.6,
@@ -1310,7 +1327,7 @@ function PrinciplesAndMethod({
       lineHeight: 1,
       ...stagger(1)
     }
-  }, "Values and culture", /*#__PURE__*/React.createElement("span", {
+  }, WPP_t('homeValuesHeading', "Values and culture"), /*#__PURE__*/React.createElement("span", {
     style: {
       fontFamily: serif,
       fontStyle: 'italic',
@@ -1335,6 +1352,7 @@ function PrinciplesAndMethod({
       transition: 'transform 1400ms cubic-bezier(.2,.7,.2,1) 250ms'
     }
   })), /*#__PURE__*/React.createElement("div", {
+    "data-override-key": "homeValuesKicker",
     style: {
       fontFamily: serif,
       fontStyle: 'italic',
@@ -1346,7 +1364,8 @@ function PrinciplesAndMethod({
       marginBottom: 20,
       ...stagger(2, 100)
     }
-  }, "What shapes our work"), /*#__PURE__*/React.createElement("div", {
+  }, WPP_t('homeValuesKicker', "What shapes our work")), /*#__PURE__*/React.createElement("div", {
+    "data-override-key": "homeValuesIntro",
     style: {
       fontSize: 18,
       color: T.inkSoft,
@@ -1354,7 +1373,7 @@ function PrinciplesAndMethod({
       maxWidth: 400,
       ...stagger(3, 100)
     }
-  }, "A well-defined set of values and culture characterise our approach — and the work we choose to take on.")), /*#__PURE__*/React.createElement("div", {
+  }, WPP_t('homeValuesIntro', "A well-defined set of values and culture characterise our approach — and the work we choose to take on."))), /*#__PURE__*/React.createElement("div", {
     ref: listRef,
     style: {
       position: 'relative',
@@ -1690,6 +1709,7 @@ function MandatesShowcase({
       position: 'relative'
     }
   }, /*#__PURE__*/React.createElement("h2", {
+    "data-override-key": "homeMandatesHeading",
     style: {
       fontSize: 'clamp(32px, 4.6vw, 56px)',
       letterSpacing: -1.6,
@@ -1698,7 +1718,7 @@ function MandatesShowcase({
       lineHeight: 1,
       ...stagger(1)
     }
-  }, "Selected mandates", /*#__PURE__*/React.createElement("span", {
+  }, WPP_t('homeMandatesHeading', "Selected mandates"), /*#__PURE__*/React.createElement("span", {
     style: {
       fontFamily: serif,
       fontStyle: 'italic',
