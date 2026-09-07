@@ -258,7 +258,7 @@ export default function Contact() {
       margin: '0 0 36px',
       maxWidth: 460
     }
-  }, "Write to us with a few lines about your company, the stage you're at, and what you're hoping to achieve. A partner will read it and reply, usually within one business day."), /*#__PURE__*/React.createElement("a", {
+  }, "Write to us with a few lines about your company, the stage you're at, and what you're hoping to achieve."), /*#__PURE__*/React.createElement("a", {
     href: MAILTO,
     style: {
       display: 'inline-flex',
