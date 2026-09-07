@@ -36,7 +36,7 @@ export default async function PaginasPage({
         </Link>
       </header>
 
-      <main style={{ padding: 32, maxWidth: 1400 }}>
+      <main style={{ padding: 32, maxWidth: 1800 }}>
         <h1 style={{ fontSize: 22, fontWeight: 600, color: WPP_T.ink, margin: "0 0 4px" }}>
           Contenido de las páginas
         </h1>

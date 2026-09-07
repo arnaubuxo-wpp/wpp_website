@@ -1,11 +1,16 @@
 import { getOverrides } from "@/lib/wpp/overrides-server";
+import { getAnnouncedDeals } from "@/lib/wpp/deals-server";
 import HomeClient from "./HomeClient";
 
-// Field overrides can change at any time from /admin/paginas — always fetch
-// fresh rather than caching a stale build-time snapshot.
+// Field overrides (and announced deals) can change at any time from the
+// admin panel — always fetch fresh rather than caching a stale build-time
+// snapshot.
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const overrides = await getOverrides("home");
-  return <HomeClient overrides={overrides} />;
+  const [overrides, announcedDeals] = await Promise.all([
+    getOverrides("home"),
+    getAnnouncedDeals(),
+  ]);
+  return <HomeClient overrides={overrides} announcedDeals={announcedDeals} />;
 }

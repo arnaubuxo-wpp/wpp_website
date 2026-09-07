@@ -33,6 +33,9 @@ export default async function AdminDashboardPage() {
           <Link href="/admin/blog" style={{ fontSize: 13, color: WPP_T.ink }}>
             Blog
           </Link>
+          <Link href="/admin/deals" style={{ fontSize: 13, color: WPP_T.ink }}>
+            Deals
+          </Link>
           <Link href="/admin/account" style={{ fontSize: 13, color: WPP_T.ink }}>
             Account
           </Link>
@@ -82,6 +85,25 @@ export default async function AdminDashboardPage() {
           <strong>Gestionar el blog →</strong>
           <div style={{ color: WPP_T.mute, marginTop: 4 }}>
             Crea, edita, programa y publica artículos.
+          </div>
+        </Link>
+        <Link
+          href="/admin/deals"
+          style={{
+            display: "block",
+            background: "#fff",
+            border: `1px solid ${WPP_T.hair}`,
+            borderRadius: 10,
+            padding: 20,
+            fontSize: 14,
+            color: WPP_T.ink,
+            textDecoration: "none",
+            marginTop: 16,
+          }}
+        >
+          <strong>Añadir deals anunciados →</strong>
+          <div style={{ color: WPP_T.mute, marginTop: 4 }}>
+            Sube el logo de un cliente cuando se anuncie un nuevo deal.
           </div>
         </Link>
       </main>

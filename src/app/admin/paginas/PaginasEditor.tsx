@@ -21,18 +21,29 @@ export default function PaginasEditor({
   return (
     <div
       style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))",
+        display: "flex",
+        flexWrap: "wrap",
         gap: 24,
         alignItems: "start",
       }}
     >
-      <PaginasForm
-        pageDef={pageDef}
-        initialValues={initialValues}
-        onFieldActivate={setActiveKey}
-      />
-      <div style={{ height: "calc(100vh - 220px)", minHeight: 480, position: "sticky", top: 32 }}>
+      <div style={{ flex: "1 1 380px", minWidth: 340, maxWidth: 460 }}>
+        <PaginasForm
+          pageDef={pageDef}
+          initialValues={initialValues}
+          onFieldActivate={setActiveKey}
+        />
+      </div>
+      <div
+        style={{
+          flex: "3 1 640px",
+          minWidth: 420,
+          height: "calc(100vh - 220px)",
+          minHeight: 480,
+          position: "sticky",
+          top: 32,
+        }}
+      >
         <PagePreview path={pageDef.path} label={pageDef.label} activeKey={activeKey} />
       </div>
     </div>

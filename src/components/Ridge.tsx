@@ -24,13 +24,20 @@ const ridgeTokens = {
   blueSoft: '#dfe3f1'
 };
 function Ridge({
-  onNavigate
+  onNavigate,
+  announcedDeals
 }) {
   const T = ridgeTokens;
   const G = WPP_GUTTER;
   const isMobile = WPP_useIsMobile();
   const isNarrow = WPP_useIsNarrow();
-  const D = WPP_useSanityDeals(WPP_DATA);
+  // Deals added from /admin/deals (new deal announcements, each with its own
+  // logo) show up first in the "Selected mandates" marquee, ahead of the
+  // original hardcoded recent deals — see MandatesShowcase below.
+  const D = WPP_useSanityDeals({
+    ...WPP_DATA,
+    recentDeals: [...(announcedDeals || []), ...WPP_DATA.recentDeals]
+  });
   const nav = onNavigate || (() => {});
   const sans = '"Inter Tight", "Inter", system-ui, sans-serif';
   const mono = '"JetBrains Mono", ui-monospace, monospace';
