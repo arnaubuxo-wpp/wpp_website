@@ -11,6 +11,44 @@ import { Reveal as WPP_Reveal, CohortTeaser as WPP_CohortTeaser } from '@/lib/wp
 import { __R } from '@/lib/wpp/assets';
 import { WPP_useSanityDeals, WPP_sanityConfigured, WPP_sanityFetch, WPP_t, WPP_img } from '@/lib/wpp/sanity-stub';
 
+// Intrinsic aspect ratios (width/height) of the client logo files, measured from
+// the assets themselves. These drive optical-AREA normalisation below: constraining
+// a 7:1 wordmark and a 1:1 monogram to the same max-width/max-height box renders them
+// at wildly different visual weights, which is what made this wall look uneven.
+// Normalising on area (height = sqrt(TARGET/ar)) gives every mark roughly the same
+// presence regardless of its shape.
+const WPP_LOGO_AR = {
+  'aba-english.png': 2.64,
+  'addvolt-mark.png': 5.77,
+  'adglow.png': 2.74,
+  'blueliv.png': 4.01,
+  'carto-mark.png': 2.55,
+  'coconut.png': 4.78,
+  'datumize.png': 6.87,
+  'electronic-id.png': 0.81,
+  'fintonic.png': 4.32,
+  'gtmotive-mark.png': 3.07,
+  'housfy.png': 3.88,
+  'icontainers.png': 7.37,
+  'incapto.png': 4.27,
+  'lucera.png': 3.61,
+  'mailtrack.png': 1.68,
+  'minube.png': 3.95,
+  'nearby-computing.png': 2.45,
+  'open-cosmos.png': 2.83,
+  'promofarma.png': 4.76,
+  'stayforlong.png': 5.05,
+  'ticketea.png': 4.17,
+  'typeform.png': 6.21,
+  'unnax.png': 5.63,
+  'walmeric-mark.png': 4.59
+};
+const WPP_LOGO_TARGET_AREA = 4600;
+function wppLogoHeight(src) {
+  const ar = WPP_LOGO_AR[String(src).split('/').pop()] || 4;
+  return Math.round(Math.max(22, Math.min(62, Math.sqrt(WPP_LOGO_TARGET_AREA / ar))));
+}
+
 const ridgeTokens = {
   bg: '#ffffff',
   panel: '#f7f7f8',
@@ -50,14 +88,25 @@ function Ridge({
     value,
     suffix = '',
     prefix = '',
-    duration = 1600
+    duration = 1000
   }) {
-    const [n, setN] = React.useState(0);
+    // The final figure is the DEFAULT state, not the end of an animation. This matters:
+    // starting at 0 meant the server-rendered HTML (and any fast scroll, crawler, or
+    // link-preview screenshot) could show "0+ Years combined deal experience". Now the
+    // correct number is what renders unless an animation actively runs, and the count-up
+    // starts partway up so even a mid-flight glimpse reads plausibly rather than wrong.
+    const from = Math.round(value * 0.6);
+    const [n, setN] = React.useState(value);
     const ref = React.useRef(null);
     const startedRef = React.useRef(false);
     React.useEffect(() => {
       const el = ref.current;
       if (!el) return;
+      if (WPP_REDUCED_MOTION) return; // leave the final figure in place
+      // Drop to the start value on mount, not when the animation fires: this block sits
+      // below the fold, so the change is unseen, and the viewer never watches the number
+      // count DOWN from the real figure before counting back up to it.
+      setN(from);
       const start = () => {
         if (startedRef.current) return;
         startedRef.current = true;
@@ -66,7 +115,7 @@ function Ridge({
           if (t0 == null) t0 = ts;
           const p = Math.min(1, (ts - t0) / duration);
           const eased = 1 - Math.pow(1 - p, 3);
-          setN(Math.round(eased * value));
+          setN(from + Math.round(eased * (value - from)));
           if (p < 1) raf = requestAnimationFrame(tick);
         };
         raf = requestAnimationFrame(tick);
@@ -83,7 +132,7 @@ function Ridge({
       });
       obs.observe(el);
       return () => obs.disconnect();
-    }, [value, duration]);
+    }, [value, duration, from]);
     return /*#__PURE__*/React.createElement("span", {
       ref: ref
     }, prefix, n, suffix);
@@ -163,7 +212,7 @@ function Ridge({
       background: '#253362',
       backgroundImage: `radial-gradient(circle at 50% 50%, rgba(146, 161, 211, 0.30), transparent 70%)`,
       color: '#fff',
-      padding: `90px ${G}`
+      padding: `68px ${G}`
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -502,7 +551,7 @@ function Ridge({
     }
   }))), /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: `120px ${G} 100px`
+      padding: `88px ${G} 76px`
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -552,7 +601,7 @@ function Ridge({
     }
   }, WPP_t('homeIntroPara2', "We are former senior operators, engineers, VC investors and bulge-bracket bankers. The client list is small, senior partners stay on every mandate, and we treat every engagement as if our own company depended on it."))))), /*#__PURE__*/React.createElement(StatsBlock, null), /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: `60px ${G} 100px`
+      padding: `48px ${G} 76px`
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -589,7 +638,7 @@ function Ridge({
   })))), /*#__PURE__*/React.createElement("div", {
     "data-wpp-reveal-from": "right",
     style: {
-      padding: `100px ${G}`,
+      padding: `76px ${G}`,
       background: T.panel,
       borderTop: `1px solid ${T.hair}`,
       borderBottom: `1px solid ${T.hair}`
@@ -657,7 +706,7 @@ function Ridge({
     DealLogo: DealLogo
   }), /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: `80px ${G} 100px`,
+      padding: `60px ${G} 76px`,
       background: '#ffffff',
       color: T.ink
     }
@@ -779,7 +828,7 @@ function Ridge({
   }), /*#__PURE__*/React.createElement("div", {
     "data-wpp-no-reveal": "1",
     style: {
-      padding: `96px ${G} 96px`,
+      padding: `72px ${G} 72px`,
       background: T.ink,
       color: '#fff'
     }
@@ -933,7 +982,7 @@ function HomeServiceCard({
       border: `1px solid ${hover ? T.blue : T.hair}`,
       borderRadius: 4,
       padding: '24px 22px 22px',
-      minHeight: 180,
+      minHeight: 148,
       display: 'flex',
       flexDirection: 'column',
       transition: 'background 280ms ease, border-color 280ms ease, transform 380ms cubic-bezier(.7,.05,.2,1)',
@@ -1127,7 +1176,7 @@ function ClientWall({
   return /*#__PURE__*/React.createElement("div", {
     ref: rootRef,
     style: {
-      padding: `90px ${G} 30px`,
+      padding: `68px ${G} 24px`,
       background: '#ffffff'
     }
   }, /*#__PURE__*/React.createElement("div", {
@@ -1202,8 +1251,9 @@ function ClientWall({
     loading: "lazy",
     className: "wpp-client-mark",
     style: {
-      maxWidth: logo.boost ? '92%' : '78%',
-      maxHeight: logo.boost ? '78%' : '64%',
+      height: wppLogoHeight(logo.src),
+      width: 'auto',
+      maxWidth: '84%',
       objectFit: 'contain',
       display: 'block'
     }
@@ -1707,7 +1757,7 @@ function MandatesShowcase({
   return /*#__PURE__*/React.createElement("div", {
     ref: rootRef,
     style: {
-      padding: `60px ${G} 100px`
+      padding: `48px ${G} 76px`
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {

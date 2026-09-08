@@ -169,7 +169,10 @@ export default function Nav({
       document.body.style.overflow = '';
     };
   }, [menuOpen]);
-  const items = [['home', 'Home'], ['what', 'What we do'], ['about', 'About us'], ['blog', 'Blog'], ['contact', 'Contact']];
+  // NOTE: 'blog' is intentionally omitted until the first article is published —
+  // /blog and the admin blog manager both stay fully functional in the meantime.
+  // Re-add ['blog', 'Blog'] between 'about' and 'contact' to put it back.
+  const items = [['home', 'Home'], ['what', 'What we do'], ['about', 'About us'], ['contact', 'Contact']];
   const go = k => e => {
     e.preventDefault();
     setMenuOpen(false);

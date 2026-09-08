@@ -94,9 +94,9 @@ export function Privacy() {
   }, /*#__PURE__*/React.createElement(LegalSection, {
     heading: "Who we are"
   }, "White Peak Partners S.L. (trading as \"White Peak Partners\", \"we\", \"us\") is a strategic and financial advisory boutique. For the purposes of the EU GDPR, the data controller is White Peak Partners S.L., Alfambra 11–13, 3-2a, 08032 Barcelona, Spain (Tax ID B06995112), registered in the Barcelona Companies Registry. For any question about this policy or your personal data, contact us at", ' ', /*#__PURE__*/React.createElement("a", {
-    href: "mailto:hello@whitepeakpartners.com",
+    href: "mailto:info@whitepeakpartners.com",
     style: blue
-  }, "hello@whitepeakpartners.com"), "."), /*#__PURE__*/React.createElement(LegalSection, {
+  }, "info@whitepeakpartners.com"), "."), /*#__PURE__*/React.createElement(LegalSection, {
     heading: "What we collect"
   }, "We collect only what you choose to give us. When you use our contact form we process your name, company, email address, role and the message you send. If you subscribe to our newsletter we process your email address. When you visit the site, standard technical data (such as IP address and browser type) may be processed by our hosting provider for security and delivery. We may also collect application data if you contact us about a role, and information from public professional sources."), /*#__PURE__*/React.createElement(LegalSection, {
     heading: "How we use it and our lawful basis"
@@ -107,9 +107,9 @@ export function Privacy() {
   }, "Where data is transferred outside the EEA — for example when a service provider or its equipment is based abroad — we put appropriate safeguards in place, usually the European Commission's Standard Contractual Clauses."), /*#__PURE__*/React.createElement(LegalSection, {
     heading: "Your rights"
   }, "You have the right to access, correct, delete or port your data, to object to or restrict its processing, and to withdraw consent at any time. To exercise any of these, email", ' ', /*#__PURE__*/React.createElement("a", {
-    href: "mailto:hello@whitepeakpartners.com",
+    href: "mailto:info@whitepeakpartners.com",
     style: blue
-  }, "hello@whitepeakpartners.com"), ". You may also lodge a complaint with the competent Data Protection Authority — in Spain, the Agencia Española de Protección de Datos (AEPD), or the supervisory authority in your country of residence or work."), /*#__PURE__*/React.createElement(LegalSection, {
+  }, "info@whitepeakpartners.com"), ". You may also lodge a complaint with the competent Data Protection Authority — in Spain, the Agencia Española de Protección de Datos (AEPD), or the supervisory authority in your country of residence or work."), /*#__PURE__*/React.createElement(LegalSection, {
     heading: "Changes"
   }, "We may update this policy from time to time. The \"last updated\" date above reflects the current version."));
 }
