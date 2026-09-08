@@ -113,10 +113,6 @@ function Ridge({
       const el = ref.current;
       if (!el) return;
       if (WPP_REDUCED_MOTION) return; // leave the final figure in place
-      // Drop to the start value on mount, not when the animation fires: this block sits
-      // below the fold, so the change is unseen, and the viewer never watches the number
-      // count DOWN from the real figure before counting back up to it.
-      setN(from);
       const start = () => {
         if (startedRef.current) return;
         startedRef.current = true;
@@ -128,6 +124,12 @@ function Ridge({
           setN(from + Math.round(eased * (value - from)));
           if (p < 1) raf = requestAnimationFrame(tick);
         };
+        // Drop to the start value only as the animation begins — one frame before the
+        // count-up takes over. Resetting on mount instead left the DOM holding the
+        // start value ("24+") for as long as the reader hadn't scrolled here yet, which
+        // is what a JS-executing crawler or a screenshot would then capture. This way
+        // the resting value is always the real figure.
+        setN(from);
         raf = requestAnimationFrame(tick);
       };
       const obs = new IntersectionObserver(entries => {

@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { sql } from "@/lib/wpp/db";
 import { verifySession, SESSION_COOKIE } from "@/lib/wpp/auth";
 import { getPageDef } from "@/lib/wpp/override-fields";
+import { recordChange } from "@/lib/wpp/history-server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -36,11 +37,24 @@ export async function POST(request: Request) {
   const fieldByKey = new Map(pageDef.fields.map((f) => [f.key, f]));
 
   try {
+    // Snapshot what this page currently holds, so each field that actually changes
+    // can have its previous wording recorded before being overwritten.
+    const existingRows = (await sql()`
+      SELECT key, value FROM page_content WHERE page = ${pageSlug}
+    `) as { key: string; value: string }[];
+    const existing = new Map(existingRows.map((r) => [r.key, r.value]));
+    const changedBy = session.email ?? null;
+
     for (const [key, rawValue] of Object.entries(values)) {
       const field = fieldByKey.get(key);
       if (!field) continue; // ignore keys not registered for this page
 
       const value = (rawValue ?? "").toString();
+      const previous = existing.get(key) ?? null;
+      const previousNormalised = previous ?? "";
+      if (previousNormalised !== value) {
+        await recordChange(pageSlug, key, previous, changedBy);
+      }
 
       if (value.trim() === "") {
         // Empty = revert to the original hardcoded copy.

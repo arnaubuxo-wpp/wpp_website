@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { PageDef } from "@/lib/wpp/override-fields";
+import type { HistoryEntry } from "@/lib/wpp/history-types";
 import { WPP_T, WPP_FONTS } from "@/lib/wpp/tokens";
 
 export default function PaginasForm({
@@ -22,6 +23,34 @@ export default function PaginasForm({
   const [success, setSuccess] = useState(false);
   const [uploadingKey, setUploadingKey] = useState<string | null>(null);
   const fileInputRefs = useRef<Record<string, HTMLInputElement | null>>({});
+
+  // Previous wording per field, loaded on demand the first time someone opens a
+  // field's history. Page edits go live immediately with no staging step, so this
+  // is the way back from an overwrite of copy that had already been signed off.
+  const [history, setHistory] = useState<HistoryEntry[] | null>(null);
+  const [historyLoading, setHistoryLoading] = useState(false);
+  const [openHistoryKey, setOpenHistoryKey] = useState<string | null>(null);
+
+  async function toggleHistory(key: string) {
+    if (openHistoryKey === key) {
+      setOpenHistoryKey(null);
+      return;
+    }
+    setOpenHistoryKey(key);
+    if (history !== null || historyLoading) return;
+    setHistoryLoading(true);
+    try {
+      const res = await fetch(
+        `/api/admin/paginas/history?page=${encodeURIComponent(pageDef.slug)}`
+      );
+      const data = await res.json();
+      setHistory(Array.isArray(data.history) ? data.history : []);
+    } catch {
+      setHistory([]);
+    } finally {
+      setHistoryLoading(false);
+    }
+  }
 
   function update(key: string, val: string) {
     setValues((prev) => ({ ...prev, [key]: val }));
@@ -219,6 +248,104 @@ export default function PaginasForm({
             <span style={{ display: "block", fontSize: 12, color: WPP_T.mute, marginTop: 4 }}>
               Empty = use the site&rsquo;s original text.
             </span>
+          )}
+
+          <button
+            type="button"
+            onClick={() => toggleHistory(field.key)}
+            style={{
+              background: "none",
+              border: "none",
+              padding: 0,
+              marginTop: 6,
+              fontSize: 12,
+              color: WPP_T.mute,
+              cursor: "pointer",
+              fontFamily: WPP_FONTS.sans,
+              textDecoration: "underline",
+            }}
+          >
+            {openHistoryKey === field.key ? "Hide previous versions" : "Previous versions"}
+          </button>
+
+          {openHistoryKey === field.key && (
+            <div
+              style={{
+                marginTop: 8,
+                border: `1px solid ${WPP_T.hair}`,
+                borderRadius: 8,
+                background: WPP_T.panel,
+                padding: 12,
+              }}
+            >
+              {historyLoading ? (
+                <div style={{ fontSize: 12.5, color: WPP_T.mute }}>Loading…</div>
+              ) : (
+                (() => {
+                  const entries = (history ?? []).filter((h) => h.key === field.key);
+                  if (entries.length === 0) {
+                    return (
+                      <div style={{ fontSize: 12.5, color: WPP_T.mute }}>
+                        No earlier versions — this field hasn&rsquo;t been changed yet.
+                      </div>
+                    );
+                  }
+                  return (
+                    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                      {entries.slice(0, 8).map((h) => (
+                        <div key={h.id} style={{ fontSize: 12.5 }}>
+                          <div style={{ color: WPP_T.mute, marginBottom: 3 }}>
+                            {new Date(h.changedAt).toLocaleString("en-GB")}
+                            {h.changedBy ? ` · ${h.changedBy}` : ""}
+                          </div>
+                          <div
+                            style={{
+                              background: "#fff",
+                              border: `1px solid ${WPP_T.hair}`,
+                              borderRadius: 6,
+                              padding: "7px 9px",
+                              color: WPP_T.ink,
+                              whiteSpace: "pre-wrap",
+                              wordBreak: "break-word",
+                            }}
+                          >
+                            {h.previousValue === null || h.previousValue === "" ? (
+                              <em style={{ color: WPP_T.mute }}>
+                                (empty — was showing the original text)
+                              </em>
+                            ) : (
+                              h.previousValue
+                            )}
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => update(field.key, h.previousValue ?? "")}
+                            style={{
+                              marginTop: 5,
+                              border: `1px solid ${WPP_T.hair}`,
+                              background: "#fff",
+                              borderRadius: 6,
+                              padding: "4px 10px",
+                              fontSize: 12,
+                              fontWeight: 600,
+                              color: WPP_T.ink,
+                              cursor: "pointer",
+                              fontFamily: WPP_FONTS.sans,
+                            }}
+                          >
+                            Put this back
+                          </button>
+                        </div>
+                      ))}
+                      <div style={{ fontSize: 11.5, color: WPP_T.mute }}>
+                        Putting a version back only fills the box — press{" "}
+                        <strong>Save changes</strong> to publish it.
+                      </div>
+                    </div>
+                  );
+                })()
+              )}
+            </div>
           )}
         </label>
       ))}

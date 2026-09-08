@@ -61,6 +61,9 @@ export default async function AdminDashboardPage() {
               </span>
             )}
           </Link>
+          <Link href="/admin/users" style={{ fontSize: 13, color: WPP_T.ink }}>
+            People
+          </Link>
           <Link href="/admin/account" style={{ fontSize: 13, color: WPP_T.ink }}>
             Account
           </Link>
@@ -185,6 +188,25 @@ export default async function AdminDashboardPage() {
           </strong>
           <div style={{ color: WPP_T.mute, marginTop: 4 }}>
             Messages sent through the contact form on the website.
+          </div>
+        </Link>
+        <Link
+          href="/admin/users"
+          style={{
+            display: "block",
+            background: "#fff",
+            border: `1px solid ${WPP_T.hair}`,
+            borderRadius: 10,
+            padding: 20,
+            fontSize: 14,
+            color: WPP_T.ink,
+            textDecoration: "none",
+            marginTop: 16,
+          }}
+        >
+          <strong>Manage admin accounts →</strong>
+          <div style={{ color: WPP_T.mute, marginTop: 4 }}>
+            Add a colleague, or reset a forgotten password.
           </div>
         </Link>
       </main>
