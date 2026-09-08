@@ -7,6 +7,7 @@ import { WPP_T, WPP_FONTS, WPP_GUTTER } from '@/lib/wpp/tokens';
 import { WPP_useIsMobile, WPP_useIsNarrow } from '@/lib/wpp/hooks';
 import { Tag as WPP_Tag } from '@/lib/wpp/shared';
 import { WPP_t } from '@/lib/wpp/sanity-stub';
+import ContactForm from '@/components/ContactForm';
 
 function ContactRow({
   row,
@@ -184,8 +185,6 @@ export default function Contact() {
   const isNarrow = WPP_useIsNarrow();
   const isMobile = WPP_useIsMobile();
   const Tag = WPP_Tag;
-  const CONTACT_EMAIL = 'info@whitepeakpartners.com';
-  const MAILTO = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Enquiry — White Peak Partners')}`;
   return /*#__PURE__*/React.createElement("div", {
     style: {
       fontFamily: F.sans,
@@ -264,23 +263,7 @@ export default function Contact() {
       margin: '0 0 36px',
       maxWidth: 460
     }
-  }, WPP_t('contactFormIntro', "Write to us with a few lines about your company, the stage you're at, and what you're hoping to achieve.")), /*#__PURE__*/React.createElement("a", {
-    href: MAILTO,
-    style: {
-      display: 'inline-flex',
-      alignItems: 'center',
-      gap: 10,
-      alignSelf: 'flex-start',
-      padding: '18px 30px',
-      background: T.blue,
-      color: '#fff',
-      borderRadius: 999,
-      fontSize: 16,
-      fontWeight: 600,
-      textDecoration: 'none',
-      boxShadow: '0 8px 24px rgba(29,78,216,0.35)'
-    }
-  }, CONTACT_EMAIL, " →"), /*#__PURE__*/React.createElement("div", {
+  }, WPP_t('contactFormIntro', "Write to us with a few lines about your company, the stage you're at, and what you're hoping to achieve.")), /*#__PURE__*/React.createElement(ContactForm, null), /*#__PURE__*/React.createElement("div", {
     "data-override-key": "contactConfidentialNote",
     style: {
       marginTop: 20,

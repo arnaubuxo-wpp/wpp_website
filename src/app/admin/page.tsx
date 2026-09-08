@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { verifySession, SESSION_COOKIE } from "@/lib/wpp/auth";
+import { countNewEnquiries } from "@/lib/wpp/enquiries-server";
 import { WPP_T, WPP_FONTS } from "@/lib/wpp/tokens";
 import LogoutButton from "./LogoutButton";
 
@@ -9,6 +10,7 @@ export const dynamic = "force-dynamic";
 export default async function AdminDashboardPage() {
   const cookieStore = await cookies();
   const session = await verifySession(cookieStore.get(SESSION_COOKIE)?.value);
+  const newEnquiries = await countNewEnquiries();
 
   return (
     <div style={{ minHeight: "100vh", background: WPP_T.panel, fontFamily: WPP_FONTS.sans }}>
@@ -35,6 +37,26 @@ export default async function AdminDashboardPage() {
           </Link>
           <Link href="/admin/deals" style={{ fontSize: 13, color: WPP_T.ink }}>
             Deals
+          </Link>
+          <Link
+            href="/admin/enquiries"
+            style={{ fontSize: 13, color: WPP_T.ink, display: "inline-flex", alignItems: "center", gap: 6 }}
+          >
+            Enquiries
+            {newEnquiries > 0 && (
+              <span
+                style={{
+                  background: WPP_T.blue,
+                  color: "#fff",
+                  borderRadius: 999,
+                  fontSize: 11,
+                  fontWeight: 700,
+                  padding: "1px 7px",
+                }}
+              >
+                {newEnquiries}
+              </span>
+            )}
           </Link>
           <Link href="/admin/account" style={{ fontSize: 13, color: WPP_T.ink }}>
             Account
@@ -104,6 +126,43 @@ export default async function AdminDashboardPage() {
           <strong>Add announced deals →</strong>
           <div style={{ color: WPP_T.mute, marginTop: 4 }}>
             Upload a client&rsquo;s logo whenever a new deal is announced.
+          </div>
+        </Link>
+        <Link
+          href="/admin/enquiries"
+          style={{
+            display: "block",
+            background: "#fff",
+            border: `1px solid ${newEnquiries > 0 ? WPP_T.blue : WPP_T.hair}`,
+            borderRadius: 10,
+            padding: 20,
+            fontSize: 14,
+            color: WPP_T.ink,
+            textDecoration: "none",
+            marginTop: 16,
+          }}
+        >
+          <strong>
+            Read enquiries →
+            {newEnquiries > 0 && (
+              <span
+                style={{
+                  background: WPP_T.blue,
+                  color: "#fff",
+                  borderRadius: 999,
+                  fontSize: 11,
+                  fontWeight: 700,
+                  padding: "2px 8px",
+                  marginLeft: 8,
+                  verticalAlign: "middle",
+                }}
+              >
+                {newEnquiries} new
+              </span>
+            )}
+          </strong>
+          <div style={{ color: WPP_T.mute, marginTop: 4 }}>
+            Messages sent through the contact form on the website.
           </div>
         </Link>
       </main>
