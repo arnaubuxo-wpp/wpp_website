@@ -1,5 +1,6 @@
 import { getOverrides } from "@/lib/wpp/overrides-server";
 import { getAnnouncedDeals } from "@/lib/wpp/deals-server";
+import { getPressLinks } from "@/lib/wpp/press-server";
 import HomeClient from "./HomeClient";
 
 // Field overrides (and announced deals) can change at any time from the
@@ -8,9 +9,16 @@ import HomeClient from "./HomeClient";
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const [overrides, announcedDeals] = await Promise.all([
+  const [overrides, announcedDeals, pressLinks] = await Promise.all([
     getOverrides("home"),
     getAnnouncedDeals(),
+    getPressLinks(),
   ]);
-  return <HomeClient overrides={overrides} announcedDeals={announcedDeals} />;
+  return (
+    <HomeClient
+      overrides={overrides}
+      announcedDeals={announcedDeals}
+      pressLinks={pressLinks}
+    />
+  );
 }

@@ -72,7 +72,8 @@ const ridgeTokens = {
 };
 function Ridge({
   onNavigate,
-  announcedDeals
+  announcedDeals,
+  pressLinks
 }) {
   const T = ridgeTokens;
   const G = WPP_GUTTER;
@@ -183,8 +184,16 @@ function Ridge({
   // throws out the mismatched subtree, and re-renders the page from scratch — the
   // visible flash/jank on load. Reading the DOM has to happen after mount instead, in
   // an effect, so the first client render matches the server's.
-  const [newsItems, setNewsItems] = React.useState([]);
+  //
+  // UPDATE: the list now arrives as a prop, resolved on the server (curated in
+  // /admin/press, else the built-in selection). That is strictly better than the
+  // effect below — the articles are in the server-rendered HTML rather than being
+  // filled in after mount — so when the prop is present the effect does nothing.
+  // The DOM/fetch path is kept only for the standalone/dev case where it isn't.
+  const serverPress = Array.isArray(pressLinks) ? pressLinks.slice(0, 3) : [];
+  const [newsItems, setNewsItems] = React.useState(serverPress);
   React.useEffect(() => {
+    if (serverPress.length > 0) return;
     let alive = true;
     try {
       const el = document.getElementById('wpp-news-data');
@@ -207,7 +216,7 @@ function Ridge({
     return () => {
       alive = false;
     };
-  }, []);
+  }, [serverPress.length]);
   // If Sanity is configured, its content takes priority over the inline/json
   // fallback above (team-edited news beats the hardcoded list).
   React.useEffect(() => {

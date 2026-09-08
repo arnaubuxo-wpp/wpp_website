@@ -38,6 +38,9 @@ export default async function AdminDashboardPage() {
           <Link href="/admin/deals" style={{ fontSize: 13, color: WPP_T.ink }}>
             Deals
           </Link>
+          <Link href="/admin/press" style={{ fontSize: 13, color: WPP_T.ink }}>
+            Reading
+          </Link>
           <Link
             href="/admin/enquiries"
             style={{ fontSize: 13, color: WPP_T.ink, display: "inline-flex", alignItems: "center", gap: 6 }}
@@ -126,6 +129,25 @@ export default async function AdminDashboardPage() {
           <strong>Add announced deals →</strong>
           <div style={{ color: WPP_T.mute, marginTop: 4 }}>
             Upload a client&rsquo;s logo whenever a new deal is announced.
+          </div>
+        </Link>
+        <Link
+          href="/admin/press"
+          style={{
+            display: "block",
+            background: "#fff",
+            border: `1px solid ${WPP_T.hair}`,
+            borderRadius: 10,
+            padding: 20,
+            fontSize: 14,
+            color: WPP_T.ink,
+            textDecoration: "none",
+            marginTop: 16,
+          }}
+        >
+          <strong>Curate hand-picked reading →</strong>
+          <div style={{ color: WPP_T.mute, marginTop: 4 }}>
+            The press links shown near the bottom of the homepage.
           </div>
         </Link>
         <Link
