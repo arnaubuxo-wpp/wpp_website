@@ -43,6 +43,15 @@ const WPP_LOGO_AR = {
   'unnax.png': 5.63,
   'walmeric-mark.png': 4.59
 };
+// Splits a stat figure typed in the admin ("40+", "€25bn+", "2") into the parts
+// CountUp needs. Returns null when there's no leading number to animate, in which
+// case the caller renders the string verbatim.
+function splitStatFigure(figure) {
+  const m = /^(\D*?)(\d+)(.*)$/.exec(String(figure ?? '').trim());
+  if (!m) return null;
+  return { prefix: m[1], value: parseInt(m[2], 10), suffix: m[3] };
+}
+
 const WPP_LOGO_TARGET_AREA = 4600;
 function wppLogoHeight(src) {
   const ar = WPP_LOGO_AR[String(src).split('/').pop()] || 4;
@@ -137,18 +146,26 @@ function Ridge({
       ref: ref
     }, prefix, n, suffix);
   }
+  // Editable from /admin/paginas. Each figure is entered as a single string
+  // ("40+", "€25bn+", "2") rather than a number and a separate suffix field —
+  // far less fiddly for whoever is updating it. splitStatFigure pulls the
+  // leading digits back out so the count-up animation still works; anything
+  // without leading digits simply renders as typed, no animation.
   const homeStats = [{
-    value: 40,
-    suffix: '+',
-    label: 'Years combined deal experience'
+    valueKey: 'homeStat1Value',
+    labelKey: 'homeStat1Label',
+    figure: WPP_t('homeStat1Value', '40+'),
+    label: WPP_t('homeStat1Label', 'Years combined deal experience')
   }, {
-    value: 30,
-    suffix: '+',
-    label: 'Mandates closed'
+    valueKey: 'homeStat2Value',
+    labelKey: 'homeStat2Label',
+    figure: WPP_t('homeStat2Value', '30+'),
+    label: WPP_t('homeStat2Label', 'Mandates closed')
   }, {
-    value: 2,
-    suffix: '',
-    label: 'Offices: London, Barcelona'
+    valueKey: 'homeStat3Value',
+    labelKey: 'homeStat3Label',
+    figure: WPP_t('homeStat3Value', '2'),
+    label: WPP_t('homeStat3Label', 'Offices: London, Barcelona')
   }];
 
   // ---- News / hand-picked reading ----
@@ -233,6 +250,7 @@ function Ridge({
         borderLeft: '1px solid rgba(255,255,255,0.28)'
       }
     }, /*#__PURE__*/React.createElement("div", {
+      "data-override-key": s.valueKey,
       style: {
         fontFamily: serif,
         fontSize: 'clamp(56px, 8vw, 96px)',
@@ -241,10 +259,15 @@ function Ridge({
         lineHeight: 1,
         color: '#fff'
       }
-    }, /*#__PURE__*/React.createElement(CountUp, {
-      value: s.value,
-      suffix: s.suffix
-    })), /*#__PURE__*/React.createElement("div", {
+    }, (() => {
+      const parsed = splitStatFigure(s.figure);
+      return parsed ? /*#__PURE__*/React.createElement(CountUp, {
+        value: parsed.value,
+        suffix: parsed.suffix,
+        prefix: parsed.prefix
+      }) : s.figure;
+    })()), /*#__PURE__*/React.createElement("div", {
+      "data-override-key": s.labelKey,
       style: {
         marginTop: 18,
         fontSize: 15,

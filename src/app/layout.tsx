@@ -4,6 +4,7 @@ import "./globals.css";
 import { WPP_META } from "@/lib/wpp/tokens";
 import { WPP_NEWS_DATA } from "@/lib/wpp/news-data";
 import ScrollRevealInstaller from "@/lib/wpp/scroll-reveal";
+import { Analytics } from "@vercel/analytics/next";
 
 // Same three typefaces the original site self-hosted (subsetted @font-face files),
 // now loaded via next/font/google. See src/lib/wpp/tokens.ts for how components
@@ -176,6 +177,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         <div id="site-root">{children}</div>
         <ScrollRevealInstaller />
+        {/* Vercel Analytics: privacy-friendly, cookieless page/visitor counts.
+            Needs Analytics enabled for the project in the Vercel dashboard. */}
+        <Analytics />
       </body>
     </html>
   );

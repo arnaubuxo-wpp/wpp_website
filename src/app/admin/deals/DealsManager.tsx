@@ -14,6 +14,14 @@ const inputStyle: React.CSSProperties = {
   fontFamily: WPP_FONTS.sans,
 };
 
+const editLabelStyle: React.CSSProperties = {
+  display: "block",
+  fontSize: 13,
+  fontWeight: 600,
+  color: WPP_T.ink,
+  marginBottom: 4,
+};
+
 const buttonStyle: React.CSSProperties = {
   fontSize: 13,
   fontWeight: 600,
@@ -25,6 +33,14 @@ const buttonStyle: React.CSSProperties = {
   cursor: "pointer",
   fontFamily: WPP_FONTS.sans,
 };
+
+interface EditDraft {
+  name: string;
+  summary: string;
+  detail: string;
+  sector: string;
+  logoUrl: string | null;
+}
 
 export default function DealsManager({ initialDeals }: { initialDeals: AnnouncedDeal[] }) {
   const [deals, setDeals] = useState<AnnouncedDeal[]>(initialDeals);
@@ -38,6 +54,9 @@ export default function DealsManager({ initialDeals }: { initialDeals: Announced
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const editFileInputRef = useRef<HTMLInputElement | null>(null);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editDraft, setEditDraft] = useState<EditDraft | null>(null);
 
   async function persist(next: AnnouncedDeal[]) {
     setSaving(true);
@@ -65,7 +84,8 @@ export default function DealsManager({ initialDeals }: { initialDeals: Announced
     }
   }
 
-  async function handleLogoSelected(file: File) {
+  /** Uploads and returns the URL, so the add form and the edit form can share it. */
+  async function uploadLogo(file: File): Promise<string | null> {
     setUploading(true);
     setError(null);
     try {
@@ -75,14 +95,66 @@ export default function DealsManager({ initialDeals }: { initialDeals: Announced
       const data = await res.json();
       if (!res.ok) {
         setError(data.error || "Upload failed.");
-        return;
+        return null;
       }
-      setLogoUrl(data.url);
+      return data.url as string;
     } catch {
       setError("Upload failed. Please try again.");
+      return null;
     } finally {
       setUploading(false);
     }
+  }
+
+  async function handleLogoSelected(file: File) {
+    const url = await uploadLogo(file);
+    if (url) setLogoUrl(url);
+  }
+
+  // ---- Editing an existing deal -------------------------------------------
+  function startEdit(deal: AnnouncedDeal) {
+    setEditingId(deal.id);
+    setEditDraft({
+      name: deal.name,
+      summary: deal.summary,
+      detail: deal.detail,
+      sector: deal.sector,
+      logoUrl: deal.logoUrl,
+    });
+    setError(null);
+    setSuccess(false);
+  }
+
+  function cancelEdit() {
+    setEditingId(null);
+    setEditDraft(null);
+  }
+
+  async function saveEdit(id: string) {
+    if (!editDraft) return;
+    if (!editDraft.name.trim()) {
+      setError("The company name is required.");
+      return;
+    }
+    const next = deals.map((d) =>
+      d.id === id
+        ? {
+            ...d,
+            name: editDraft.name.trim(),
+            summary: editDraft.summary.trim(),
+            detail: editDraft.detail.trim(),
+            sector: editDraft.sector.trim(),
+            logoUrl: editDraft.logoUrl,
+          }
+        : d
+    );
+    const ok = await persist(next);
+    if (ok) cancelEdit();
+  }
+
+  async function handleEditLogoSelected(file: File) {
+    const url = await uploadLogo(file);
+    if (url) setEditDraft((d) => (d ? { ...d, logoUrl: url } : d));
   }
 
   async function handleAdd(e: React.FormEvent) {
@@ -317,14 +389,13 @@ export default function DealsManager({ initialDeals }: { initialDeals: Announced
             }}
           >
             {deals.map((deal, i) => (
+              <div key={deal.id} style={{ borderTop: i === 0 ? "none" : `1px solid ${WPP_T.hair}` }}>
               <div
-                key={deal.id}
                 style={{
                   display: "flex",
                   alignItems: "center",
                   gap: 16,
                   padding: "14px 20px",
-                  borderTop: i === 0 ? "none" : `1px solid ${WPP_T.hair}`,
                 }}
               >
                 <div
@@ -379,6 +450,14 @@ export default function DealsManager({ initialDeals }: { initialDeals: Announced
                   </button>
                   <button
                     type="button"
+                    onClick={() => (editingId === deal.id ? cancelEdit() : startEdit(deal))}
+                    disabled={saving}
+                    style={buttonStyle}
+                  >
+                    {editingId === deal.id ? "Cancel" : "Edit"}
+                  </button>
+                  <button
+                    type="button"
                     onClick={() => handleDelete(deal.id)}
                     disabled={saving}
                     style={{ ...buttonStyle, color: "#b42318", borderColor: "#fecdca" }}
@@ -386,6 +465,138 @@ export default function DealsManager({ initialDeals }: { initialDeals: Announced
                     Delete
                   </button>
                 </div>
+              </div>
+
+              {editingId === deal.id && editDraft && (
+                <div style={{ padding: "4px 20px 20px", background: WPP_T.panel }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+                    <label style={{ display: "block" }}>
+                      <span style={editLabelStyle}>Company name</span>
+                      <input
+                        type="text"
+                        value={editDraft.name}
+                        onChange={(e) =>
+                          setEditDraft((d) => (d ? { ...d, name: e.target.value } : d))
+                        }
+                        style={inputStyle}
+                      />
+                    </label>
+
+                    <div>
+                      <span style={editLabelStyle}>Logo</span>
+                      <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                        {editDraft.logoUrl && (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={editDraft.logoUrl}
+                            alt=""
+                            style={{
+                              height: 40,
+                              maxWidth: 140,
+                              objectFit: "contain",
+                              border: `1px solid ${WPP_T.hair}`,
+                              borderRadius: 6,
+                              padding: 4,
+                              background: "#fff",
+                            }}
+                          />
+                        )}
+                        <button
+                          type="button"
+                          onClick={() => editFileInputRef.current?.click()}
+                          disabled={uploading}
+                          style={buttonStyle}
+                        >
+                          {uploading
+                            ? "Uploading…"
+                            : editDraft.logoUrl
+                            ? "Change logo"
+                            : "Upload logo"}
+                        </button>
+                        {editDraft.logoUrl && (
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setEditDraft((d) => (d ? { ...d, logoUrl: null } : d))
+                            }
+                            style={{ ...buttonStyle, color: "#b42318", borderColor: "#fecdca" }}
+                          >
+                            Remove
+                          </button>
+                        )}
+                      </div>
+                      <input
+                        ref={editFileInputRef}
+                        type="file"
+                        accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) handleEditLogoSelected(file);
+                          e.target.value = "";
+                        }}
+                        style={{ display: "none" }}
+                      />
+                    </div>
+
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+                      <label style={{ display: "block" }}>
+                        <span style={editLabelStyle}>Deal type</span>
+                        <input
+                          type="text"
+                          value={editDraft.summary}
+                          onChange={(e) =>
+                            setEditDraft((d) => (d ? { ...d, summary: e.target.value } : d))
+                          }
+                          style={inputStyle}
+                        />
+                      </label>
+                      <label style={{ display: "block" }}>
+                        <span style={editLabelStyle}>Amount</span>
+                        <input
+                          type="text"
+                          value={editDraft.detail}
+                          onChange={(e) =>
+                            setEditDraft((d) => (d ? { ...d, detail: e.target.value } : d))
+                          }
+                          style={inputStyle}
+                        />
+                      </label>
+                    </div>
+
+                    <label style={{ display: "block" }}>
+                      <span style={editLabelStyle}>Sector (optional, internal reference only)</span>
+                      <input
+                        type="text"
+                        value={editDraft.sector}
+                        onChange={(e) =>
+                          setEditDraft((d) => (d ? { ...d, sector: e.target.value } : d))
+                        }
+                        style={inputStyle}
+                      />
+                    </label>
+
+                    <div style={{ display: "flex", gap: 8 }}>
+                      <button
+                        type="button"
+                        onClick={() => saveEdit(deal.id)}
+                        disabled={saving || uploading}
+                        style={{
+                          ...buttonStyle,
+                          background: WPP_T.ink,
+                          color: "#fff",
+                          borderColor: WPP_T.ink,
+                          padding: "8px 18px",
+                        }}
+                      >
+                        {saving ? "Saving…" : "Save changes"}
+                      </button>
+                      <button type="button" onClick={cancelEdit} disabled={saving} style={buttonStyle}>
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
               </div>
             ))}
           </div>
